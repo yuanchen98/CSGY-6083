@@ -3,6 +3,7 @@ import {HashRouter as Router,Route,Routes} from "react-router-dom";
 import React from 'react'
 import App from "./App";
 import NavBar from "./components/NavBar";
+import { Home } from "./components/Home";
 // import Login from "./pages/simplerouter/login";
 // import Home from "./pages/simplerouter/home";
 
@@ -20,7 +21,7 @@ export default function IRouter(){
         <Routes>
             <Route exact path = "/" element={<App />}></Route>
             <Route exact path = "/login" element={<App />}></Route>
-            <Route exact path = "/home" element={<NavBar />}></Route>
+            <Route exact path = "/home" element={<Home />}></Route>
         </Routes>
 
     </Router>

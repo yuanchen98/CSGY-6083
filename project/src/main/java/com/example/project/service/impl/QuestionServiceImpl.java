@@ -4,6 +4,7 @@ import com.example.project.entity.Questions;
 import com.example.project.repository.QuestionRepository;
 import com.example.project.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,6 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public List<Questions> listAll() {
-        return questionRepository.findAll();
+        return questionRepository.findAll(Sort.by(Sort.Direction.DESC, "postTime"));
     }
 }
