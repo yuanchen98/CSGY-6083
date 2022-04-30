@@ -1,9 +1,12 @@
 import logo from "./pics/NYU_Stacked_RGB_Color.png";
 import "./App.css";
 import { LockClosedIcon } from "@heroicons/react/solid";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 
 function App() {
+	const navigate = useNavigate();
 	const onSubmit = (e) => {
 		e.preventDefault();
 
@@ -21,7 +24,12 @@ function App() {
 			}),
 		})
 			.then((response) => response.json())
-			.then((data) => console.log(data))
+			.then((data) => {
+				console.log(data);
+				if (data.code === 200) {
+					navigate.push('/home');
+				}
+			})
 			.catch((err) => err);
 	};
 
