@@ -1,57 +1,35 @@
 package com.example.project.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "answers")
 public class Answers {
 
-  private long answerId;
-  private long questionId;
-  private long userId;
-  private java.sql.Timestamp postTime;
-  private String answerBody;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long answerId;
 
+    @ManyToOne
+    @JoinColumn(name = "question_id", referencedColumnName = "question_id", insertable = false, updatable = false)
+    private Questions questions;
 
-  public long getAnswerId() {
-    return answerId;
-  }
+    @ManyToOne
+    @JoinColumn(name = "User_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+    private User user;
 
-  public void setAnswerId(long answerId) {
-    this.answerId = answerId;
-  }
+    @Column(name = "post_time", columnDefinition = "datetime not null")
+    private java.sql.Timestamp postTime;
 
+    @Column(name = "answer_body", columnDefinition = "text not null")
+    private String answerBody;
 
-  public long getQuestionId() {
-    return questionId;
-  }
-
-  public void setQuestionId(long questionId) {
-    this.questionId = questionId;
-  }
-
-
-  public long getUserId() {
-    return userId;
-  }
-
-  public void setUserId(long userId) {
-    this.userId = userId;
-  }
-
-
-  public java.sql.Timestamp getPostTime() {
-    return postTime;
-  }
-
-  public void setPostTime(java.sql.Timestamp postTime) {
-    this.postTime = postTime;
-  }
-
-
-  public String getAnswerBody() {
-    return answerBody;
-  }
-
-  public void setAnswerBody(String answerBody) {
-    this.answerBody = answerBody;
-  }
 
 }

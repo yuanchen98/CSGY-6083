@@ -1,77 +1,40 @@
 package com.example.project.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "questions")
 public class Questions {
 
-  private long questionId;
-  private long userId;
-  private long categoryId;
-  private long subCategoryId;
-  private String title;
-  private String body;
-  private java.sql.Timestamp postTime;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "question_id")
+    private long questionId;
 
+    @ManyToOne
+    @JoinColumn(name = "User_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+    private User user;
 
-  public long getQuestionId() {
-    return questionId;
-  }
+    @ManyToOne
+    @JoinColumns({@JoinColumn(name = "category_id", referencedColumnName = "category_id", insertable = false, updatable = false),
+            @JoinColumn(name = "sub_category_id", referencedColumnName = "sub_category_id", insertable = false, updatable = false)})
+    private SubCategory subCategory;
 
-  public void setQuestionId(long questionId) {
-    this.questionId = questionId;
-  }
+    @Column(name = "title", columnDefinition = "varchar(100) not null")
+    private String title;
 
+    @Column(name = "body", columnDefinition = "text not null")
+    private String body;
 
-  public long getUserId() {
-    return userId;
-  }
+    @Column(name ="post_time", columnDefinition = "datetime not null")
+    private java.sql.Timestamp postTime;
 
-  public void setUserId(long userId) {
-    this.userId = userId;
-  }
-
-
-  public long getCategoryId() {
-    return categoryId;
-  }
-
-  public void setCategoryId(long categoryId) {
-    this.categoryId = categoryId;
-  }
-
-
-  public long getSubCategoryId() {
-    return subCategoryId;
-  }
-
-  public void setSubCategoryId(long subCategoryId) {
-    this.subCategoryId = subCategoryId;
-  }
-
-
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-
-  public String getBody() {
-    return body;
-  }
-
-  public void setBody(String body) {
-    this.body = body;
-  }
-
-
-  public java.sql.Timestamp getPostTime() {
-    return postTime;
-  }
-
-  public void setPostTime(java.sql.Timestamp postTime) {
-    this.postTime = postTime;
-  }
 
 }
