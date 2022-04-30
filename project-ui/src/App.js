@@ -7,6 +7,7 @@ import axios from "axios";
 
 function App() {
 	const navigate = useNavigate();
+
 	const onSubmit = (e) => {
 		e.preventDefault();
 
@@ -27,7 +28,7 @@ function App() {
 			.then((data) => {
 				console.log(data);
 				if (data.code === 200) {
-					navigate.push('/home');
+					navigate('/home');
 				}
 			})
 			.catch((err) => err);
