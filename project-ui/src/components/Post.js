@@ -29,7 +29,7 @@ const Post = (props) => {
 							<p className="max-w-2xl text-sm text-gray-500">
 								{question.user.username}
 							</p>
-							<Link to={{pathname:`/list/${question.questionId}`}} className="no-underline hover:underline hover:text-purple-700 mt-0.5 leading-6 font-medium text-gray-900 text-xl align-text-top">
+							<Link to={{pathname:`/list/${question.questionId}`}} className="no-underline hover:underline hover:text-purple-700 hover:cursor-pointer mt-0.5 leading-6 font-medium text-gray-900 text-xl align-text-top">
 								{question.title}
 							</Link>
 							<p className="max-w-2xl text-sm text-gray-500 align-text-top">

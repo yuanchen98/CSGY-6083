@@ -6,6 +6,10 @@ class QuestionService{
     listAll(){
         return axios.get(QUESTION_BASE_URL+"listAll");
     }
+
+    listOne(id){
+        return axios.get(QUESTION_BASE_URL+`list/${id}`);
+    }
 }
 
 export default new QuestionService();
