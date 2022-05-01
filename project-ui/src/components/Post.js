@@ -1,6 +1,12 @@
 import React from "react";
 import { PaperClipIcon } from "@heroicons/react/solid";
-
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link,
+	useParams,
+} from "react-router-dom";
 // const questions = [
 // 	{ title: "test1", body: "Í1" },
 // 	{ title: "test2", body: "2" },
@@ -23,9 +29,9 @@ const Post = (props) => {
 							<p className="max-w-2xl text-sm text-gray-500">
 								{question.user.username}
 							</p>
-							<h3 className="mt-0.5 leading-6 font-medium text-gray-900 text-xl align-text-top">
+							<Link to={{pathname:`/list/${question.questionId}`}} className="no-underline hover:underline hover:text-purple-700 mt-0.5 leading-6 font-medium text-gray-900 text-xl align-text-top">
 								{question.title}
-							</h3>
+							</Link>
 							<p className="max-w-2xl text-sm text-gray-500 align-text-top">
 								Posted{" "}
 								{Math.floor(
