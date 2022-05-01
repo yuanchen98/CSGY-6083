@@ -1,5 +1,6 @@
 package com.example.project.controller;
 
+import com.example.project.entity.Answers;
 import com.example.project.entity.Questions;
 import com.example.project.entity.response.ResponseEntity;
 import com.example.project.service.QuestionService;
@@ -31,7 +32,6 @@ public class QuestionController {
         Questions questions = questionService.listOneQuestion(questionId);
         return new ResponseEntity<>(HttpStatus.OK.value(), "Find question success", questions);
     }
-
 
 
 }
