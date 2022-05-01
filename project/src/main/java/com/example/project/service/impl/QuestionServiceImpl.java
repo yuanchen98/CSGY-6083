@@ -1,6 +1,7 @@
 package com.example.project.service.impl;
 
 import com.example.project.entity.Questions;
+import com.example.project.entity.exception.SystemGlobalException;
 import com.example.project.repository.QuestionRepository;
 import com.example.project.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
@@ -18,5 +20,14 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public List<Questions> listAll() {
         return questionRepository.findAll(Sort.by(Sort.Direction.DESC, "postTime"));
+    }
+
+    @Override
+    public Questions listOneQuestion(Long questionId) {
+        Optional<Questions> question = questionRepository.findById(questionId);
+        if(question.isEmpty()){
+            throw new SystemGlobalException("No such question");
+        }
+        return question.get();
     }
 }
