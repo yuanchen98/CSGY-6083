@@ -16,9 +16,10 @@ import {
 
 const Post = (props) => {
 	const questions = props.questions;
+    // console.log(questions);
 
 	return (
-		<div className="container mx-auto">
+		<div className="container mx-auto px-4 sm:px-3 md:px-5">
 			{questions.map((question) => (
 				<div
 					className="rounded-xl shadow-lg mt-8 shadow-purple-100"
