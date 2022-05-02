@@ -9,21 +9,25 @@ import AdDrop from "./AdDrop"
 
 const Regist = () => {
 	const navigate = useNavigate();
+    const [cityid, setCityid] = useState("");
 
 	const onSubmit = (e) => {
 		e.preventDefault();
 
 		const formData = new FormData(e.target);
+        console.log(cityid);
 
-		fetch("http://localhost:8080/api/user/login", {
+		fetch("http://localhost:8080/api/user/regist", {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
-				userId: formData.get("userId"),
+            
+				username: formData.get("userId"),
 				pwd: formData.get("password"),
+                locationId: cityid,
 			}),
 		})
 			.then((response) => response.json())
@@ -97,7 +101,7 @@ const Regist = () => {
 									/>
 								</div>
 
-                                <AdDrop></AdDrop>
+                                <AdDrop cityid={cityid} setCityid={setCityid}></AdDrop>
 							</div>
 
 

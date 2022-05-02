@@ -28,4 +28,9 @@ public class LocationServiceImpl implements LocationService {
     public List<Location> getCities(String country, String state) {
         return locationRepository.findLocationByCountryAndState(country, state);
     }
+
+    @Override
+    public Location getLocation(Long locationId) {
+        return locationRepository.getById(locationId);
+    }
 }

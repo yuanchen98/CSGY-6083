@@ -2,6 +2,7 @@ package com.example.project.controller;
 
 import com.example.project.entity.User;
 import com.example.project.entity.response.ResponseEntity;
+import com.example.project.model.UserRegistFactory;
 import com.example.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,9 @@ public class PageController {
     @Autowired
     private HttpSession httpSession;
 
+    @Autowired
+    private UserRegistFactory userRegistFactory;
+
     @PostMapping(value = "/login")
     @ResponseBody
     public ResponseEntity<User> login(@RequestBody @Valid User user, BindingResult bindingResult) {
@@ -39,6 +43,17 @@ public class PageController {
         }
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR.value(),"No such user or the account sign-in was incorrect");
 
+    }
+
+    @PostMapping(value = "/regist")
+    @ResponseBody
+    public ResponseEntity<User> regist(@RequestBody @Valid UserRegistFactory.UserRegist userRegist, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), bindingResult.getFieldError().getDefaultMessage());
+        }
+        User user = userRegistFactory.rpoToPojo.apply(userRegist);
+        user = userService.regist(user);
+        return new ResponseEntity<>(HttpStatus.OK.value(), "Regist success", user);
     }
 
 }

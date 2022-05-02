@@ -1,7 +1,9 @@
 package com.example.project.service.impl;
 
+import com.example.project.entity.Location;
 import com.example.project.entity.User;
 import com.example.project.entity.exception.SystemGlobalException;
+import com.example.project.model.UserRegistFactory;
 import com.example.project.repository.UserRepository;
 import com.example.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+
+
     @Override
     public User login(Long id, String pwd) {
         Optional<User> user = userRepository.findById(id);
@@ -29,5 +33,10 @@ public class UserServiceImpl implements UserService {
         }
         return loginUser;
 
+    }
+
+    @Override
+    public User regist(User user) {
+        return userRepository.saveAndFlush(user);
     }
 }

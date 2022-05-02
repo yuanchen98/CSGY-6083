@@ -12,4 +12,6 @@ public interface LocationService {
     List<String> getCountry();
 
     List<Location> getCities(String country, String state);
+
+    Location getLocation(Long locationId);
 }

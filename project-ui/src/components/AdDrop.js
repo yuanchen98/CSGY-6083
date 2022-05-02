@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 // import { Container } from "react-bootstrap";
 import LocationService from "../service/LocationService";
 
-function Country() {
+const Country=(props)=> {
 	const [country, setCountry] = useState([]);
 	const [countryid, setCountryid] = useState("");
 	const [states, setState] = useState([]);
 	const [stateid, setStateid] = useState("");
 	const [city, setCity] = useState([]);
-	const [cityid, setCityid] = useState("");
+	// const [cityid, setCityid] = useState("");
+    // console.log(props.cityid);
+    
 
 	useEffect(() => {
 		const getcountry = async () => {
@@ -55,7 +57,9 @@ function Country() {
 
 	const handlecity = (event) => {
 		const getcityid = event.target.value;
-		setCityid(getcityid);
+        
+		this.props.setCityid(getcityid);
+        
 		event.preventDefault();
 	};
 
