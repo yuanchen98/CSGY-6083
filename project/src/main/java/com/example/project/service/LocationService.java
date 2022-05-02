@@ -7,5 +7,9 @@ import java.util.List;
 
 @Service
 public interface LocationService {
-    List<Location> getStates(String state);
+    List<String> getStates(String country);
+
+    List<String> getCountry();
+
+    List<Location> getCities(String country, String state);
 }

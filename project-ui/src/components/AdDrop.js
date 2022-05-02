@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { Container } from "react-bootstrap";
+// import { Container } from "react-bootstrap";
+import LocationService from "../service/LocationService";
 
 function Country() {
 	const [country, setCountry] = useState([]);
 	const [countryid, setCountryid] = useState("");
-	const [stetes, setSat] = useState([]);
+	const [states, setState] = useState([]);
+	const [stateid, setStateid] = useState("");
+    const [city, setCity] = useState([]);
+	const [cityid, setCityid] = useState("");
 
 	useEffect(() => {
 		const getcountry = async () => {
-			const req = await fetch("http://localhost/devopsdeveloper/country");
-			const getres = await req.json();
-			console.log(getres);
-			setCountry(await getres);
+			try {
+				const getres = await LocationService.listCtys();
+				console.log(getres.data.data);
+				setCountry(await getres.data.data);
+			} catch (error) {
+				console.log(error);
+			}
 		};
 		getcountry();
 	}, []);
@@ -24,17 +31,36 @@ function Country() {
 
 	useEffect(() => {
 		const getstate = async () => {
-			const resstate = await fetch(
-				`http://localhost/devopsdeveloper/state/getstate/${countryid}`
-			);
-			const getst = resstate.json();
-			setSat(await getst);
+			const getst = await LocationService.listStates(countryid);
+			console.log(getst.data.data);
+			setState(await getst.data.data);
 		};
 		getstate();
 	}, [countryid]);
 
+	const handlestate = (event) => {
+		const getstateid = event.target.value;
+		setStateid(getstateid);
+		event.preventDefault();
+	};
+
+    useEffect(() => {
+		const getcity = async () => {
+			const getci = await LocationService.listCities(countryid, stateid);
+			console.log(getci.data.data);
+			setCity(await getci.data.data);
+		};
+		getcity();
+	}, [stateid, countryid]);
+
+    const handlecity= (event) => {
+		const getcityid = event.target.value;
+		setCityid(getcityid);
+		event.preventDefault();
+	};
+
 	return (
-		<Container className="content">
+		<div className="content container">
 			<div className="row">
 				<div className="col-sm-12">
 					<h5 className="mt-4 mb-4 fw-bold">Output {}</h5>
@@ -49,20 +75,39 @@ function Country() {
 							>
 								<option>--Select Country--</option>
 								{country.map((getcon) => (
-									<option key={getcon.country_id} value={getcon.country_id}>
+									<option key={getcon} value={getcon}>
 										{" "}
-										{getcon.country_name}
+										{getcon}
 									</option>
 								))}
 							</select>
 						</div>
 						<div className="form-group col-md-4">
 							<label className="mb-2">State</label>
-							<select name="state" className="form-control">
+							<select
+								name="state"
+								className="form-control"
+								onChange={(e) => handlestate(e)}
+							>
 								<option>--Select State--</option>
-								{stetes.map((st, index) => (
-									<option key={index} value={st.state_id}>
-										{st.state_name}
+								{states.map((st) => (
+									<option key={st} value={st}>
+										{st}
+									</option>
+								))}
+							</select>
+						</div>
+                        <div className="form-group col-md-4">
+							<label className="mb-2">City</label>
+							<select
+								name="city"
+								className="form-control"
+								onChange={(e) => handlecity(e)}
+							>
+								<option>--Select City--</option>
+								{city.map((city) => (
+									<option key={city.locationId} value={city.locationId}>
+										{city.city}
 									</option>
 								))}
 							</select>
@@ -74,7 +119,7 @@ function Country() {
 					</div>
 				</div>
 			</div>
-		</Container>
+		</div>
 	);
 }
 

@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import { Home } from "./components/Home";
 import Answer from "./components/Answer";
 import Regist from "./components/Regist";
+import AdDrop from "./components/AdDrop";
 // import Login from "./pages/simplerouter/login";
 // import Home from "./pages/simplerouter/home";
 
@@ -26,6 +27,8 @@ export default function IRouter() {
 				<Route exact path="/home" element={<Home />}></Route>
                 <Route exact path="/regist" element={<Regist />}></Route>
 				<Route path="/list/:id" element={<Answer />} />
+
+                <Route exact path="/test" element={<AdDrop />}></Route>
 			</Routes>
 		</Router>
 	);
