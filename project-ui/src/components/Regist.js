@@ -1,12 +1,13 @@
-import logo from "./pics/NYU_Stacked_RGB_Color.png";
-import "./App.css";
+import logo from "../pics/NYU_Stacked_RGB_Color.png";
+import "../App.css";
 import { LockClosedIcon } from "@heroicons/react/solid";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
-function App() {
-	const navigate = useNavigate();
+
+const Regist = () => {
+    const navigate = useNavigate();
 
 	const onSubmit = (e) => {
 		e.preventDefault();
@@ -52,12 +53,12 @@ function App() {
 							Sign in to your account
 						</h2>
 						<p className="mt-2 text-center text-sm text-gray-700">
-							<Link
-								to={{pathname: `/Regist`}}
+							<a
+								href="#"
 								className="font-medium text-purple-700 hover:text-purple-500"
 							>
 								Don't have an account? Sign up
-							</Link>
+							</a>
 						</p>
 					</div>
 					<form className="mt-8 space-y-6" onSubmit={onSubmit} method="POST">
@@ -141,6 +142,6 @@ function App() {
 			</div>
 		</>
 	);
-}
+};
 
-export default App;
+export default Regist;
