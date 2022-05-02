@@ -32,7 +32,7 @@ public class User {
     private long points;
 
     @ManyToOne
-    @JoinColumn(name = "location_id", referencedColumnName = "location_id", insertable = false, updatable = false)
+    @JoinColumn(name = "location_id", referencedColumnName = "location_id", insertable = true, updatable = false)
     private Location location;
 
 

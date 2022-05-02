@@ -58,8 +58,7 @@ const Country=(props)=> {
 	const handlecity = (event) => {
 		const getcityid = event.target.value;
         
-		this.props.setCityid(getcityid);
-        
+		props.setCityid(getcityid);
 		event.preventDefault();
 	};
 

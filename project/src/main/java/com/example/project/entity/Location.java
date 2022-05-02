@@ -12,13 +12,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "location")
-@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
+// @JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "location_id")
-    private long locationId;
+    private Long locationId;
 
     @Column(name = "city",  columnDefinition = "varchar(21) not null")
     private String city;

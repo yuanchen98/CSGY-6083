@@ -37,6 +37,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User regist(User user) {
-        return userRepository.saveAndFlush(user);
+        return userRepository.save(user);
     }
 }
