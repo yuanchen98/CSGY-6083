@@ -7,7 +7,7 @@ function Country() {
 	const [countryid, setCountryid] = useState("");
 	const [states, setState] = useState([]);
 	const [stateid, setStateid] = useState("");
-    const [city, setCity] = useState([]);
+	const [city, setCity] = useState([]);
 	const [cityid, setCityid] = useState("");
 
 	useEffect(() => {
@@ -44,7 +44,7 @@ function Country() {
 		event.preventDefault();
 	};
 
-    useEffect(() => {
+	useEffect(() => {
 		const getcity = async () => {
 			const getci = await LocationService.listCities(countryid, stateid);
 			console.log(getci.data.data);
@@ -53,71 +53,66 @@ function Country() {
 		getcity();
 	}, [stateid, countryid]);
 
-    const handlecity= (event) => {
+	const handlecity = (event) => {
 		const getcityid = event.target.value;
 		setCityid(getcityid);
 		event.preventDefault();
 	};
 
 	return (
-		<div className="content container">
-			<div className="row">
-				<div className="col-sm-12">
-					<h5 className="mt-4 mb-4 fw-bold">Output {}</h5>
-
-					<div className="row mb-3">
-						<div className="form-group col-md-4">
-							<label className="mb-2">Country</label>
-							<select
-								name="country"
-								className="form-control"
-								onChange={(e) => handlecountry(e)}
-							>
-								<option>--Select Country--</option>
-								{country.map((getcon) => (
-									<option key={getcon} value={getcon}>
-										{" "}
-										{getcon}
-									</option>
-								))}
-							</select>
-						</div>
-						<div className="form-group col-md-4">
-							<label className="mb-2">State</label>
-							<select
-								name="state"
-								className="form-control"
-								onChange={(e) => handlestate(e)}
-							>
-								<option>--Select State--</option>
-								{states.map((st) => (
-									<option key={st} value={st}>
-										{st}
-									</option>
-								))}
-							</select>
-						</div>
-                        <div className="form-group col-md-4">
-							<label className="mb-2">City</label>
-							<select
-								name="city"
-								className="form-control"
-								onChange={(e) => handlecity(e)}
-							>
-								<option>--Select City--</option>
-								{city.map((city) => (
-									<option key={city.locationId} value={city.locationId}>
-										{city.city}
-									</option>
-								))}
-							</select>
-						</div>
-
-						<div className="form-group col-md-2 mt-4">
-							<button className="btn btn-success mt-2">Submit</button>
-						</div>
+		<div className="container pt-4 pb-8">
+			<div className="flex mt-6 mb-4 justify-evenly">
+				
+					<div className="w-32">
+						<label className="mb-2">Country</label>
+						<select
+							name="country"
+							className="form-control mt-1 rounded-md font-medium
+                            text-sm h-9 focus:outline-purple-100"
+							onChange={(e) => handlecountry(e)}
+						>
+							<option>--Select--</option>
+							{country.map((getcon) => (
+								<option key={getcon} value={getcon}>
+									{" "}
+									{getcon}
+								</option>
+							))}
+						</select>
 					</div>
-				</div>
+					<div className="w-32">
+						<label className="mb-2">State</label>
+						<select
+							name="state"
+							className="form-control mt-1 rounded-md font-medium
+                            text-sm h-9 focus:outline-purple-100"
+							onChange={(e) => handlestate(e)}
+						>
+							<option>--Select--</option>
+							{states.map((st) => (
+								<option key={st} value={st}>
+									{st}
+								</option>
+							))}
+						</select>
+					</div>
+					<div className="w-32 ">
+						<label className="mb-2">City</label>
+						<select
+							name="city"
+							className="form-control mt-1 rounded-md font-medium
+                            text-sm h-9 focus:outline-purple-100"
+							onChange={(e) => handlecity(e)}
+						>
+							<option>--Select--</option>
+							{city.map((city) => (
+								<option key={city.locationId} value={city.locationId}>
+									{city.city}
+								</option>
+							))}
+						</select>
+					</div>
+				
 			</div>
 		</div>
 	);

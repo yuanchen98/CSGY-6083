@@ -4,6 +4,8 @@ import { LockClosedIcon } from "@heroicons/react/solid";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import AdDrop from "./AdDrop"
+
 
 const Regist = () => {
 	const navigate = useNavigate();
@@ -94,10 +96,12 @@ const Regist = () => {
 										// onFocus={onPwdFocus}
 									/>
 								</div>
+
+                                <AdDrop></AdDrop>
 							</div>
 
 
-							<div className="flex items-center justify-between">
+							{/* <div className="flex items-center justify-between">
 								<div className="flex items-center">
 									<input
 										id="remember-me"
@@ -122,9 +126,12 @@ const Regist = () => {
 										Forgot your password?
 									</a>
 								</div>
-							</div>
 
-							<div className="pb-6">
+                                
+
+							</div> */}
+
+							<div className="pb-6 pt-8">
 								<button
 									type="submit"
 									className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-700 hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
@@ -138,6 +145,8 @@ const Regist = () => {
 									Regist Now!
 								</button>
 							</div>
+
+
 						</form>
 					</div>
 				</div>
