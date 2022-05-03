@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { divideColor } from "tailwindcss/defaultTheme";
 import { Fragment } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
+import {
+	SearchIcon,
+	BellIcon,
+	MenuIcon,
+	XIcon,
+} from "@heroicons/react/outline";
 import { useNavigate } from "react-router-dom";
-import logo from "../pics/NYU_Short_RGB_Color.png"
-import avator from "../pics/avatar.png"
-
+import logo from "../pics/NYU_Short_RGB_Color.png";
+import avator from "../pics/avatar.png";
+import axios from "axios";
+import QuestionService from "../service/QuestionService";
 
 const navigation = [
 	{ name: "Dashboard", href: "/home", current: true },
@@ -19,7 +25,37 @@ const navigation = [
 function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
 }
-const navBar = () => {
+const NavBar = () => {
+	const [res, setRes] = useState();
+    const [text, setText] = useState('');
+    const [suggest, setSuggest] = useState([]); 
+
+	useEffect(() => {
+		const loadResp = async () => {
+            // console.log(text);
+			const response = await QuestionService.ListRelatedQuestions(text);
+            // console.log(response);
+             console.log(response);
+			setRes(await response.data.data);
+             console.log(res);
+		};
+		loadResp();
+	}, [text])
+
+
+    const onChangeHandler = (text)=>{
+        setText(text); 
+        let matches = [];
+        if(text.length>0){
+            matches = res;
+        }
+        // console.log(res);
+        setSuggest(matches);
+        // console.log(suggest);
+        
+        
+    }
+
 	return (
 		<Disclosure as="nav" className="bg-purple-200">
 			{({ open }) => (
@@ -69,7 +105,31 @@ const navBar = () => {
 										))}
 									</div>
 								</div>
+                                {/* <div>{text}</div> */}
+								<div className="flex">
+									<input
+                                        
+                                        onChange={e=>onChangeHandler(e.target.value)}
+                                        value={text}
+										type="text"
+										className="rounded-lg ml-4 py-2 text-sm font-medium h-9 w-64 bg-purple-100 focus:bg-purple-50 focus:border-purple-500 border-purple-300 focus:outline-none border-2"
+									></input>
+                                    {
+                                        suggest && suggest.map((suggest,i)=>{
+                                            <div key= {i}>{suggest.titile}</div>
+                                        })
+                                    }
+									<span className="align-middle">
+										<button
+											href="#"
+											className="pl-2 w-6 h-9 text-purple-400 hover:text-purple-500"
+										>
+											<SearchIcon className="w-6 h-5" aria-hidden="true" />
+										</button>
+									</span>
+								</div>
 							</div>
+
 							<div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 								<button
 									type="button"
@@ -173,4 +233,4 @@ const navBar = () => {
 	);
 };
 
-export default navBar;
+export default NavBar;

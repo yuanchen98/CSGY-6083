@@ -12,4 +12,6 @@ public interface QuestionService {
     List<Questions> listAll();
 
     Questions listOneQuestion(Long questionId);
+
+    List<Questions> listRelatedQuestion(String text);
 }

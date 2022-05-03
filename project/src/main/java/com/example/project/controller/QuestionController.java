@@ -33,5 +33,11 @@ public class QuestionController {
         return new ResponseEntity<>(HttpStatus.OK.value(), "Find question success", questions);
     }
 
+    @GetMapping("/listRelated/{text}")
+    ResponseEntity<List<Questions>> listRelatedQuestion(@PathVariable String text){
+        List<Questions> questions = questionService.listRelatedQuestion(text);
+        return new ResponseEntity<>(HttpStatus.OK.value(), "Find related questions success", questions);
+    }
+
 
 }

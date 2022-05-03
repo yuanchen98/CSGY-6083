@@ -23,4 +23,5 @@ public class AnswerController {
         List<Answers> answerslist = answerService.listAnswers(questionId);
         return new ResponseEntity<>(HttpStatus.OK.value(), "find related answers successfully", answerslist);
     }
+
 }

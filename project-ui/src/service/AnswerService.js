@@ -7,6 +7,7 @@ class AnswerService{
         return axios.get(ANSWER_BASE_URL+`list/${id}`);
     }
 
+
 }
 
 export default new AnswerService();

@@ -11,6 +11,10 @@ class QuestionService{
         return axios.get(QUESTION_BASE_URL+`list/${id}`);
     }
 
+    ListRelatedQuestions(text){
+        return axios.get(QUESTION_BASE_URL+`listRelated/${text}`);
+    }
+
 }
 
 export default new QuestionService();

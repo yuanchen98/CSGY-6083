@@ -30,4 +30,9 @@ public class QuestionServiceImpl implements QuestionService {
         }
         return question.get();
     }
+
+    @Override
+    public List<Questions> listRelatedQuestion(String text) {
+        return questionRepository.findRelatedQuestions(text);
+    }
 }

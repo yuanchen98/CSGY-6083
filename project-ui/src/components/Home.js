@@ -40,7 +40,7 @@ export const Home = () => {
 
 	return (
 		<div>
-			<NavBar />
+			<NavBar key="uniquevalue"/>
 			{!loading && (<Post questions = {questions}/>)}
 		</div>
 	);
