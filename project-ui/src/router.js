@@ -1,5 +1,5 @@
 // import {BrowserRouter as Router,Route,Switch} from "react-router-dom";
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import React from "react";
 import App from "./App";
 import NavBar from "./components/NavBar";
@@ -26,7 +26,7 @@ export default function IRouter() {
 				<Route exact path="/login" element={<App />}></Route>
 				<Route exact path="/home" element={<Home />}></Route>
                 <Route exact path="/regist" element={<Regist />}></Route>
-				<Route path="/list/:id" element={<Answer />} />
+				<Route exact path="/list/:id" element={<Answer />} ></Route>
 
                 <Route exact path="/test" element={<AdDrop />}></Route>
 			</Routes>
