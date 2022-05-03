@@ -1,6 +1,8 @@
 import React from "react";
 
 const PostQuestion = () => {
+    const [categoryId, setCategoryId] = useState("");
+
 	return (
 		<div className="px-48 pt-6 ">
 			<div className="container shadow-lg shadow-purple-100 px-8 py-8 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100 rounded-3xl">
@@ -9,7 +11,7 @@ const PostQuestion = () => {
 						<div className="md:col-span-1">
 							<div className="px-4 sm:px-0">
 								<h3 className="text-lg font-medium leading-6 text-gray-900">
-									Post My question
+									Post My Question
 								</h3>
 								<p className="mt-1 text-sm text-gray-600">
 									NYU CHAT - Beyond just chatting

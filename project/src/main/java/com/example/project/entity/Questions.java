@@ -23,8 +23,7 @@ public class Questions {
     private User user;
 
     @ManyToOne
-    @JoinColumns({@JoinColumn(name = "category_id", referencedColumnName = "category_id", insertable = false, updatable = false),
-            @JoinColumn(name = "sub_category_id", referencedColumnName = "sub_category_id", insertable = false, updatable = false)})
+    @JoinColumn(name = "sub_category_id", referencedColumnName = "sub_category_id", insertable = true, updatable = false)
     private SubCategory subCategory;
 
     @Column(name = "title", columnDefinition = "varchar(100) not null")
