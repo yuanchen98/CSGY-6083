@@ -48,15 +48,15 @@ const CaDrop = (props) => {
 	};
 
 	return (
-		<div className="container pt-4 pb-8">
-			<div className="flex mt-6 mb-4 justify-evenly">
+		<div className="container ">
+			<div className="flex mt-6 mb-4  text-sm font-medium text-gray-700 ">
 				
 					<div className="w-32">
 						<label className="mb-2">Country</label>
 						<select
 							name="maincategory"
-							className="form-control mt-1 rounded-md font-medium
-                            text-sm h-9 focus:outline-purple-100"
+							className="form-control mt-1 text-center font-medium
+                            text-sm h-8 shadow-sm focus:ring-purple-500 focus:border-purple-500 w-full border border-gray-300 rounded-md pt-1"
 							onChange={(e) => handlecategory(e)}
 						>
 							<option>--Select--</option>
@@ -69,12 +69,12 @@ const CaDrop = (props) => {
 							))}
 						</select>
 					</div>
-					<div className="w-32">
+					<div className="w-32 ml-10">
 						<label className="mb-2">State</label>
 						<select
 							name="subcategroy"
 							className="form-control mt-1 rounded-md font-medium
-                            text-sm h-9 focus:outline-purple-100"
+                            text-sm h-8 shadow-sm focus:ring-purple-500 focus:border-purple-500 w-full border border-gray-300  pt-1"
 							onChange={(e) => handlesubcategory(e)}
 						>
 							<option>--Select--</option>
