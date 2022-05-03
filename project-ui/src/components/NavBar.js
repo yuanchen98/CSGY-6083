@@ -154,7 +154,7 @@ const NavBar = () => {
 															<div className="rounded-lg hover:ring-2 hover:ring-pink-300 hover:ring-inset py-1">
 																<NavLink
 																	target="_blank"
-																	to={{ pathname: `/list/${ress.questionId}` }}
+																	to={{ pathname: `/list/${ress.questionId}`}}
 																	className="h-full"
 																>
 																	{ress.title}

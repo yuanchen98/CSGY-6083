@@ -10,6 +10,7 @@ import AdDrop from "./components/AdDrop";
 import Post from "./components/Post";
 import SearchResult from "./components/SearchResult";
 import PostQuestion from "./components/PostQuestion";
+import CaDrop from "./components/CaDrop";
 // import Login from "./pages/simplerouter/login";
 // import Home from "./pages/simplerouter/home";
 
@@ -33,7 +34,7 @@ export default function IRouter() {
                 <Route exact path="/listRelated/:text" element={<SearchResult />} ></Route>
 
 
-                <Route exact path="/test" element={<PostQuestion />}></Route>
+                <Route exact path="/test" element={<CaDrop />}></Route>
 			</Routes>
 		</Router>
 	);

@@ -29,7 +29,7 @@ public class CategoryController {
         return new ResponseEntity<>(HttpStatus.OK.value(), subCategoryService.listSubCategory((id)));
     }
 
-    @GetMapping("/list")
+    @GetMapping("/listAll")
     ResponseEntity<List<MainCategory>> getSubCategory(){
         return new ResponseEntity<>(HttpStatus.OK.value(), mainCategoryService.listAllMainCategory());
     }

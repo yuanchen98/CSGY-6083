@@ -4,7 +4,7 @@ const CATEGORY_BASE_URL = "http://localhost:8080/api/category/"
 
 class CategoryService{
     listMainCategory(){
-        return axios.get(CATEGORY_BASE_URL+`list/}`);
+        return axios.get(CATEGORY_BASE_URL+`listAll`);
     }
 
     listSubCategory(id){

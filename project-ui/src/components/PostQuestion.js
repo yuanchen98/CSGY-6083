@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import CaDrop from "./CaDrop";
 
 const PostQuestion = () => {
-    const [categoryId, setCategoryId] = useState("");
+	const [categoryId, setCategoryId] = useState("");
 
 	return (
 		<div className="px-48 pt-6 ">
@@ -24,21 +25,16 @@ const PostQuestion = () => {
 									<div className="px-4 py-5 bg-white space-y-6 sm:p-6">
 										<div className="grid grid-cols-3 gap-6">
 											<div className="col-span-3 sm:col-span-2">
-												<label
-													
-													className="block text-sm font-medium text-gray-700"
-												>
+												<label className="block text-sm font-medium text-gray-700">
 													Title
 												</label>
 												<div className="mt-1 flex">
 													<input
-                                                    
 														type="text"
 														name="title"
 														id="title"
 														className="rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 flex-1 block w-full sm:text-sm border-gray-300"
 														placeholder="Title"
-                                                        
 													/>
 												</div>
 											</div>
@@ -61,9 +57,13 @@ const PostQuestion = () => {
 													defaultValue={""}
 												/>
 											</div>
-											
 										</div>
-
+									</div>
+									<div>
+										<CaDrop
+											categoryId={categoryId}
+											setCategoryId={setCategoryId}
+										></CaDrop>
 									</div>
 									<div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
 										<button
