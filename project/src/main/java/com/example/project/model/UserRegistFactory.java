@@ -31,7 +31,8 @@ public class UserRegistFactory {
         private String pwd;
 
         @NotNull(message = "Location can not be null")
-        private Long locationId;}
+        private Long locationId;
+    }
 
     public Function<UserRegistFactory.UserRegist, User> rpoToPojo = userRegist -> {
         User user = new User();

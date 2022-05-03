@@ -3,6 +3,7 @@ package com.example.project.controller;
 import com.example.project.entity.Answers;
 import com.example.project.entity.Questions;
 import com.example.project.entity.response.ResponseEntity;
+import com.example.project.model.QuestionDisplayFactory;
 import com.example.project.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/question")
@@ -18,6 +21,9 @@ public class QuestionController {
 
     @Autowired
     private QuestionService questionService;
+
+    @Autowired
+    private QuestionDisplayFactory questionDisplayFactory;
 
     @GetMapping("/listAll")
     @ResponseBody
@@ -34,9 +40,13 @@ public class QuestionController {
     }
 
     @GetMapping("/listRelated/{text}")
-    ResponseEntity<List<Questions>> listRelatedQuestion(@PathVariable String text){
+    ResponseEntity<List<QuestionDisplayFactory.QuestionDisplay>> listRelatedQuestion(@PathVariable String text){
         List<Questions> questions = questionService.listRelatedQuestion(text);
-        return new ResponseEntity<>(HttpStatus.OK.value(), "Find related questions success", questions);
+        List<QuestionDisplayFactory.QuestionDisplay> questionDisplayList = questions.stream().map(questionDisplayFactory.PojoToDTO).collect(Collectors.toList());
+        for(int i=0; i<questionDisplayList.size(); i++){
+            questionDisplayList.get(i).setId(i);
+        }
+        return new ResponseEntity<>(HttpStatus.OK.value(), "Find related questions success", questionDisplayList);
     }
 
 

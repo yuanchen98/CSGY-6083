@@ -26,35 +26,31 @@ function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
 }
 const NavBar = () => {
-	const [res, setRes] = useState();
-    const [text, setText] = useState('');
-    const [suggest, setSuggest] = useState([]); 
+	const [res, setRes] = useState([]);
+	const [text, setText] = useState("");
+	const [suggest, setSuggest] = useState([]);
 
 	useEffect(() => {
 		const loadResp = async () => {
-            // console.log(text);
+			// console.log(text);
 			const response = await QuestionService.ListRelatedQuestions(text);
-            // console.log(response);
-             console.log(response);
-			setRes(await response.data.data);
-             console.log(res);
+			// console.log(response);
+			setRes(response.data.data);
+			// console.log(res);
 		};
 		loadResp();
-	}, [text])
+	}, [text]);
 
+	console.log(res);
 
-    const onChangeHandler = (text)=>{
-        setText(text); 
-        let matches = [];
-        if(text.length>0){
-            matches = res;
-        }
-        // console.log(res);
-        setSuggest(matches);
-        // console.log(suggest);
-        
-        
-    }
+	const onChangeHandler = (text) => {
+		setText(text);
+		// console.log(res);
+		// setSuggest(res);
+		// console.log(suggest);
+	};
+
+	// console.log(suggest);
 
 	return (
 		<Disclosure as="nav" className="bg-purple-200">
@@ -105,21 +101,38 @@ const NavBar = () => {
 										))}
 									</div>
 								</div>
-                                {/* <div>{text}</div> */}
-								<div className="flex">
-									<input
-                                        
-                                        onChange={e=>onChangeHandler(e.target.value)}
-                                        value={text}
-										type="text"
-										className="rounded-lg ml-4 py-2 text-sm font-medium h-9 w-64 bg-purple-100 focus:bg-purple-50 focus:border-purple-500 border-purple-300 focus:outline-none border-2"
-									></input>
-                                    {
-                                        suggest && suggest.map((suggest,i)=>{
-                                            <div key= {i}>{suggest.titile}</div>
-                                        })
-                                    }
-									<span className="align-middle">
+								{/* <div>{text}</div> */}
+								<div
+									className="flex relative"
+									onBlur={() => setRes([])}
+								>
+									<div className="containder flex-col align-top absolute">
+										<input
+											onChange={(e) => onChangeHandler(e.target.value)}
+											value={text}
+											type="text"
+											className="rounded-lg ml-10 py-2 text-sm font-medium h-9 w-60 bg-purple-100 focus:bg-purple-50 focus:border-purple-500 border-purple-300 focus:outline-none border-2"
+										></input>
+										{res && (
+											<div className="ml-10 rounded-lg overflow-clip">
+												{res.map((ress) => {
+													{
+														console.log(ress);
+													}
+
+													return (
+														<div className="text-center  bg-purple-50 text-purple-500 overflow-hidden">
+															<div className="rounded-lg hover:ring-2 hover:ring-pink-300 hover:ring-inset">
+																<div className="h-full py-1">{ress.title}</div>
+															</div>
+														</div>
+													);
+												})}
+											</div>
+										)}
+									</div>
+
+									<span className="align-middle absolute left-60">
 										<button
 											href="#"
 											className="pl-2 w-6 h-9 text-purple-400 hover:text-purple-500"
