@@ -7,6 +7,8 @@ import { Home } from "./components/Home";
 import Answer from "./components/Answer";
 import Regist from "./components/Regist";
 import AdDrop from "./components/AdDrop";
+import Post from "./components/Post";
+import SearchResult from "./components/SearchResult";
 // import Login from "./pages/simplerouter/login";
 // import Home from "./pages/simplerouter/home";
 
@@ -27,7 +29,7 @@ export default function IRouter() {
 				<Route exact path="/home" element={<Home />}></Route>
                 <Route exact path="/regist" element={<Regist />}></Route>
 				<Route exact path="/list/:id" element={<Answer />} ></Route>
-
+                <Route exact path="/listRelated/:text" element={<SearchResult />} ></Route>
                 <Route exact path="/test" element={<AdDrop />}></Route>
 			</Routes>
 		</Router>

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { divideColor } from "tailwindcss/defaultTheme";
 import { Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {
 	SearchIcon,
@@ -14,6 +14,7 @@ import logo from "../pics/NYU_Short_RGB_Color.png";
 import avator from "../pics/avatar.png";
 import axios from "axios";
 import QuestionService from "../service/QuestionService";
+
 
 const navigation = [
 	{ name: "Dashboard", href: "/home", current: true },
@@ -29,6 +30,33 @@ const NavBar = () => {
 	const [res, setRes] = useState([]);
 	const [text, setText] = useState("");
 	const [suggest, setSuggest] = useState([]);
+
+	const node = useRef();
+	const [user, showText] = useState(false);
+
+	const setShowText = (user) => {
+		return showText(!user);
+	};
+
+	const clickOutside = (e) => {
+		if (node.current.contains(e.target)) {
+			// inside click
+			console.log("clicked inside");
+			return;
+		}
+		// outside click
+		console.log("clicked outside scope");
+		showText(false);
+	};
+
+	useEffect(() => {
+		document.addEventListener("mousedown", clickOutside);
+
+		// clean up function before running new effect
+		return () => {
+			document.removeEventListener("mousedown", clickOutside);
+		};
+	}, [user]);
 
 	useEffect(() => {
 		const loadResp = async () => {
@@ -102,18 +130,19 @@ const NavBar = () => {
 									</div>
 								</div>
 								{/* <div>{text}</div> */}
-								<div
-									className="flex relative"
-									onBlur={() => setRes([])}
-								>
-									<div className="containder flex-col align-top absolute">
+								<div className="flex relative">
+									<div
+										className="containder flex-col align-top absolute"
+										ref={node}
+										onClick={() => setShowText(user)}
+									>
 										<input
 											onChange={(e) => onChangeHandler(e.target.value)}
 											value={text}
 											type="text"
 											className="rounded-lg ml-10 py-2 text-sm font-medium h-9 w-60 bg-purple-100 focus:bg-purple-50 focus:border-purple-500 border-purple-300 focus:outline-none border-2"
 										></input>
-										{res && (
+										{res && user && (
 											<div className="ml-10 rounded-lg overflow-clip">
 												{res.map((ress) => {
 													{
@@ -121,9 +150,15 @@ const NavBar = () => {
 													}
 
 													return (
-														<div className="text-center  bg-purple-50 text-purple-500 overflow-hidden">
-															<div className="rounded-lg hover:ring-2 hover:ring-pink-300 hover:ring-inset">
-																<div className="h-full py-1">{ress.title}</div>
+														<div className="text-center bg-purple-50 text-purple-500 overflow-hidden">
+															<div className="rounded-lg hover:ring-2 hover:ring-pink-300 hover:ring-inset py-1">
+																<NavLink
+																	target="_blank"
+																	to={{ pathname: `/list/${ress.questionId}` }}
+																	className="h-full"
+																>
+																	{ress.title}
+																</NavLink>
 															</div>
 														</div>
 													);
@@ -133,12 +168,18 @@ const NavBar = () => {
 									</div>
 
 									<span className="align-middle absolute left-60">
-										<button
-											href="#"
-											className="pl-2 w-6 h-9 text-purple-400 hover:text-purple-500"
-										>
-											<SearchIcon className="w-6 h-5" aria-hidden="true" />
-										</button>
+										<div className="flex container">
+											<Link
+												target="_blank"
+												to={{ pathname: `/listRelated/${text}` }}
+												className="pl-2 w-6 h-9 text-purple-400 hover:text-purple-500"
+											>
+												<SearchIcon
+													className="pt-2 w-6 h-7"
+													aria-hidden="true"
+												/>
+											</Link>
+										</div>
 									</span>
 								</div>
 							</div>
