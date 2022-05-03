@@ -3,6 +3,7 @@ import NavBar from "./NavBar";
 import Post from "./Post";
 import axios from "axios";
 import QuestionService from "../service/QuestionService";
+import PostQuestion from "./PostQuestion";
 
 export const Home = () => {
 	const [loading, setLoading] = useState(true);
@@ -39,8 +40,9 @@ export const Home = () => {
 	// }, []);
 
 	return (
-		<div>
+		<div >
 			<NavBar key="uniquevalue"/>
+            <PostQuestion></PostQuestion>
 			{!loading && (<Post questions = {questions}/>)}
 		</div>
 	);

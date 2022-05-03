@@ -9,6 +9,7 @@ import Regist from "./components/Regist";
 import AdDrop from "./components/AdDrop";
 import Post from "./components/Post";
 import SearchResult from "./components/SearchResult";
+import PostQuestion from "./components/PostQuestion";
 // import Login from "./pages/simplerouter/login";
 // import Home from "./pages/simplerouter/home";
 
@@ -30,7 +31,9 @@ export default function IRouter() {
                 <Route exact path="/regist" element={<Regist />}></Route>
 				<Route exact path="/list/:id" element={<Answer />} ></Route>
                 <Route exact path="/listRelated/:text" element={<SearchResult />} ></Route>
-                <Route exact path="/test" element={<AdDrop />}></Route>
+
+
+                <Route exact path="/test" element={<PostQuestion />}></Route>
 			</Routes>
 		</Router>
 	);
