@@ -11,6 +11,7 @@ import {
 import QuestionService from "../service/QuestionService";
 import AnswerPost from "./AnswerPost";
 import AnswerService from "../service/AnswerService";
+import NewAnswer from "./NewAnswer";
 
 const Answer = () => {
 	const { id } = useParams();
@@ -43,6 +44,7 @@ const Answer = () => {
 			{!loading && <Post questions={questions} />}
             {/* {!loading && <Post questions={questions} />} */}
             {!loading && <AnswerPost answers={answers}/>}
+            {!loading && <NewAnswer questions={questions} />}
 		</div>
 	);
 };

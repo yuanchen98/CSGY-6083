@@ -17,6 +17,14 @@ class QuestionService{
         return axios.get(QUESTION_BASE_URL+`listRelated/${text}`);
     }
 
+    ListCategoryQuestions(ctgyId){
+        return axios.get(QUESTION_BASE_URL+`listCategory/${ctgyId}`);
+    }
+
+    ListSubCategoryQuestions(ctgyId){
+        return axios.get(QUESTION_BASE_URL+`listSubCategory/${ctgyId}`);
+    }
+
 }
 
 export default new QuestionService();

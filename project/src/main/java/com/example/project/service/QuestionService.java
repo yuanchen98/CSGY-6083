@@ -18,4 +18,6 @@ public interface QuestionService {
     Questions saveNewQuestion(Questions questions);
 
     List<Questions> listCatgoryQuestions(Long ctgyId);
+
+    List<Questions> listSubCatgoryQuestions(Long ctgyId);
 }

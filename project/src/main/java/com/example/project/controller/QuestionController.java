@@ -78,8 +78,14 @@ public class QuestionController {
     }
 
     @GetMapping("/listCategory/{ctgyId}")
-    ResponseEntity<List<Questions>> listRelatedQuestion(@PathVariable Long ctgyId){
+    ResponseEntity<List<Questions>> listCategoryQuestion(@PathVariable Long ctgyId){
         List<Questions> questionsList = questionService.listCatgoryQuestions(ctgyId);
+        return new ResponseEntity<>(HttpStatus.OK.value(), questionsList);
+    }
+
+    @GetMapping("/listSubCategory/{ctgyId}")
+    ResponseEntity<List<Questions>> listSubCategoryQuestion(@PathVariable Long ctgyId){
+        List<Questions> questionsList = questionService.listSubCatgoryQuestions(ctgyId);
         return new ResponseEntity<>(HttpStatus.OK.value(), questionsList);
     }
 

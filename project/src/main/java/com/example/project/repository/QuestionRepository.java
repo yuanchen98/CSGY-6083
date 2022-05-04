@@ -40,4 +40,9 @@ public interface QuestionRepository extends JpaRepository<Questions, Long> {
             "         join main_category mc on mc.category_id = sub_category.category_id\n" +
             "where mc.category_id = ?1", nativeQuery = true)
     List<Questions> listCatgoryQuestions(Long ctgyId);
+
+    @Query(value="select *\n" +
+            "from questions q\n" +
+            "where q.sub_category_id = ?1",nativeQuery = true)
+    List<Questions> findAllBySubCategoryId(Long ctgyId);
 }

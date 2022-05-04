@@ -16,7 +16,7 @@ import {
 
 const Post = (props) => {
 	const questions = props.questions;
-    // console.log(questions);
+	// console.log(questions);
 
 	return (
 		<div className="container mx-auto px-4 sm:px-3 md:px-5">
@@ -30,7 +30,10 @@ const Post = (props) => {
 							<p className="max-w-2xl text-sm text-gray-500">
 								{question.user.username}
 							</p>
-							<Link to={{pathname:`/list/${question.questionId}`}} className="no-underline hover:underline hover:text-purple-700 hover:cursor-pointer mt-0.5 leading-6 font-medium text-gray-900 text-xl align-text-top">
+							<Link
+								to={{ pathname: `/list/${question.questionId}` }}
+								className="no-underline hover:underline hover:text-purple-700 hover:cursor-pointer mt-0.5 leading-6 font-medium text-gray-900 text-xl align-text-top"
+							>
 								{question.title}
 							</Link>
 							<p className="max-w-2xl text-sm text-gray-500 align-text-top">
@@ -51,12 +54,24 @@ const Post = (props) => {
 										Category
 									</dt>
 									<dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-										<button className=" bg-purple-400 hover:bg-purple-300 text-white font-bold py-1 px-2 leading-4 rounded-full text-xs">
+										<Link
+											className=" bg-purple-400 hover:bg-purple-300 text-white font-bold py-1 px-2 leading-4 rounded-full text-xs"
+											to={{
+												pathname: `/listCategoryQuestion/${question.subCategory.mainCategory.categoryId}`,
+											}}
+											key={question.subCategory.mainCategory.categoryId}
+										>
 											{question.subCategory.mainCategory.categoryName}
-										</button>
-										<button className=" bg-purple-300 hover:bg-purple-400 text-white font-bold py-1 px-2 leading-4 rounded-full text-xs ml-2">
+										</Link>
+										<Link
+											className=" bg-purple-300 hover:bg-purple-400 text-white font-bold py-1 px-2 leading-4 rounded-full text-xs ml-2"
+											to={{
+												pathname: `/listSubCategoryQuestion/${question.subCategory.subCategoryId}`,
+											}}
+											key={question.subCategory.subCategoryId}
+										>
 											{question.subCategory.subCategoryName}
-										</button>
+										</Link>
 									</dd>
 								</div>
 								<div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
