@@ -8,4 +8,6 @@ import java.util.List;
 @Service
 public interface AnswerService {
     List<Answers> listAnswers(Long questionId);
+
+    Answers saveNewAnswer(Answers answers);
 }

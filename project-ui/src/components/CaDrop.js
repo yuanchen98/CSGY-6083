@@ -58,7 +58,7 @@ const CaDrop = (props) => {
 			<div className="flex mt-6 mb-4  text-sm font-medium text-gray-700 ">
 				
 					<div className="w-32">
-						<label className="mb-2">Country</label>
+						<label className="mb-2">Categroy</label>
 						<select
 							name="maincategory"
 							className="form-control mt-1 font-medium
@@ -76,7 +76,7 @@ const CaDrop = (props) => {
 						</select>
 					</div>
 					<div className="w-32 ml-10">
-						<label className="mb-2">State</label>
+						<label className="mb-2">Subcategory</label>
 						<select
 							name="subcategroy"
 							className="form-control mt-1 rounded-md font-medium

@@ -18,4 +18,9 @@ public class AnswerServiceImpl implements AnswerService {
     public List<Answers> listAnswers(Long questionId) {
         return answerRepository.queryByQuestionsQuestionId(questionId);
     }
+
+    @Override
+    public Answers saveNewAnswer(Answers answers) {
+        return answerRepository.save(answers);
+    }
 }
