@@ -36,6 +36,7 @@ public class AnswerController {
     @Autowired
     private UserService userService;
 
+
     @GetMapping("/list/{questionId}")
     ResponseEntity<List<Answers>> listAnswer(@PathVariable Long questionId){
         List<Answers> answerslist = answerService.listAnswers(questionId);
@@ -53,5 +54,12 @@ public class AnswerController {
         answers.setUser(userService.findById(userId));
         answers = answerService.saveNewAnswer(answers);
         return new ResponseEntity<>(HttpStatus.OK.value(), answers);
+    }
+
+    @GetMapping("/listMyAnswer/")
+    ResponseEntity<List<Answers>> listMyAnswers(){
+        User user = userService.findById((Long)httpSession.getAttribute(USER_ID));
+        List<Answers> answerList = answerService.listMyAnswer(user);
+        return new ResponseEntity<>(HttpStatus.OK.value(), answerList);
     }
 }

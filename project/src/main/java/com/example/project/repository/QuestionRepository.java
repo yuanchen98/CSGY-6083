@@ -47,5 +47,5 @@ public interface QuestionRepository extends JpaRepository<Questions, Long> {
             "where q.sub_category_id = ?1 order by post_time desc",nativeQuery = true)
     List<Questions> findAllBySubCategoryId(Long ctgyId);
 
-    List<Questions> findAllByUser(User user);
+    List<Questions> findAllByUserOrderByPostTimeDesc(User user);
 }

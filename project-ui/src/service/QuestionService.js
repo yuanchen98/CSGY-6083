@@ -25,6 +25,10 @@ class QuestionService{
         return axios.get(QUESTION_BASE_URL+`listSubCategory/${ctgyId}`);
     }
 
+    ListMyQuestions(){
+        return axios.get(QUESTION_BASE_URL+`listMyQuestion/`);
+    }
+
 }
 
 export default new QuestionService();

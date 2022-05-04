@@ -54,6 +54,6 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public List<Questions> listMyQuestions(User user) {
-        return questionRepository.findAllByUser(user);
+        return questionRepository.findAllByUserOrderByPostTimeDesc(user);
     }
 }

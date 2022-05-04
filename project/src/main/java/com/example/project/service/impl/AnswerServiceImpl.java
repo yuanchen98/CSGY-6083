@@ -1,6 +1,8 @@
 package com.example.project.service.impl;
 
 import com.example.project.entity.Answers;
+import com.example.project.entity.Questions;
+import com.example.project.entity.User;
 import com.example.project.repository.AnswerRepository;
 import com.example.project.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +24,10 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public Answers saveNewAnswer(Answers answers) {
         return answerRepository.save(answers);
+    }
+
+    @Override
+    public List<Answers> listMyAnswer(User user) {
+        return answerRepository.findAllByUserOrderByPostTimeDesc(user);
     }
 }
