@@ -1,5 +1,6 @@
 package com.example.project.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,13 +12,14 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "User")
+@Table(name = "user")
+@JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private long userId;
+    private Long userId;
 
     @Column(name = "username", columnDefinition = "varchar(21) not null")
     private String username;

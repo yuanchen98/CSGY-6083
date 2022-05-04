@@ -10,4 +10,6 @@ public interface UserService {
 
     User regist(User user);
 
+    User findById(Long id);
+
 }

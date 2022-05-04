@@ -2,17 +2,26 @@ package com.example.project.controller;
 
 import com.example.project.entity.Answers;
 import com.example.project.entity.Questions;
+import com.example.project.entity.User;
 import com.example.project.entity.response.ResponseEntity;
 import com.example.project.model.QuestionDisplayFactory;
+import com.example.project.model.QuestionPostFactory;
+import com.example.project.model.UserRegistFactory;
 import com.example.project.service.QuestionService;
+import com.example.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
+import static com.example.project.entity.constant.SystemConstant.USER_ID;
 
 @RestController
 @RequestMapping("/api/question")
@@ -20,10 +29,19 @@ import java.util.stream.Collectors;
 public class QuestionController {
 
     @Autowired
+    private HttpSession httpSession;
+
+    @Autowired
     private QuestionService questionService;
 
     @Autowired
     private QuestionDisplayFactory questionDisplayFactory;
+
+    @Autowired
+    private QuestionPostFactory questionPostFactory;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/listAll")
     @ResponseBody
@@ -49,5 +67,13 @@ public class QuestionController {
         return new ResponseEntity<>(HttpStatus.OK.value(), "Find related questions success", questionDisplayList);
     }
 
-
+    @PostMapping(value = "/post")
+    @ResponseBody
+    public ResponseEntity<Questions> regist(@RequestBody @Valid QuestionPostFactory.QuestionPost questionPost, BindingResult bindingResult){
+        Questions questions = questionPostFactory.rpoToPojo.apply(questionPost);
+        Long userId = (Long) httpSession.getAttribute(USER_ID);
+        questions.setUser(userService.findById(userId));
+        questionService.saveNewQuestion(questions);
+        return new ResponseEntity<>(HttpStatus.OK.value(), "Save new question", questions);
+    }
 }

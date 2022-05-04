@@ -35,4 +35,9 @@ public class QuestionServiceImpl implements QuestionService {
     public List<Questions> listRelatedQuestion(String text) {
         return questionRepository.findRelatedQuestions(text);
     }
+
+    @Override
+    public Questions saveNewQuestion(Questions questions){
+        return questionRepository.saveAndFlush(questions);
+    }
 }

@@ -43,9 +43,11 @@ const CaDrop = (props) => {
 	const handlesubcategory = (event) => {
 		const getsubcategoryid = event.target.value;
 		setSubCategoryId(getsubcategoryid);
-        // props.setCategoryId(getsubcategoryid)
+        props.setCategoryId(getsubcategoryid)
 		event.preventDefault();
 	};
+
+    // console.log(props.categoryId)
 
 	return (
 		<div className="container ">
@@ -55,7 +57,7 @@ const CaDrop = (props) => {
 						<label className="mb-2">Country</label>
 						<select
 							name="maincategory"
-							className="form-control mt-1 text-center font-medium
+							className="form-control mt-1 font-medium
                             text-sm h-8 shadow-sm focus:ring-purple-500 focus:border-purple-500 w-full border border-gray-300 rounded-md pt-1"
 							onChange={(e) => handlecategory(e)}
 						>

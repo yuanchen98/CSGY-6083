@@ -16,10 +16,10 @@ public class Questions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "question_id")
-    private long questionId;
+    private Long questionId;
 
     @ManyToOne
-    @JoinColumn(name = "User_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = true, updatable = false)
     private User user;
 
     @ManyToOne

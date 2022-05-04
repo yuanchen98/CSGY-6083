@@ -14,4 +14,6 @@ public interface QuestionService {
     Questions listOneQuestion(Long questionId);
 
     List<Questions> listRelatedQuestion(String text);
+
+    Questions saveNewQuestion(Questions questions);
 }

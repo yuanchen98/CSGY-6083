@@ -15,14 +15,14 @@ public class Answers {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long answerId;
+    private Long answerId;
 
     @ManyToOne
-    @JoinColumn(name = "question_id", referencedColumnName = "question_id", insertable = false, updatable = false)
+    @JoinColumn(name = "question_id", referencedColumnName = "question_id", insertable = true, updatable = false)
     private Questions questions;
 
     @ManyToOne
-    @JoinColumn(name = "User_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = true, updatable = false)
     private User user;
 
     @Column(name = "post_time", columnDefinition = "datetime not null")
