@@ -1,6 +1,7 @@
 package com.example.project.service;
 
 import com.example.project.entity.Questions;
+import com.example.project.entity.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,4 +21,6 @@ public interface QuestionService {
     List<Questions> listCatgoryQuestions(Long ctgyId);
 
     List<Questions> listSubCatgoryQuestions(Long ctgyId);
+
+    List<Questions> listMyQuestions(User user);
 }

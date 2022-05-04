@@ -89,4 +89,11 @@ public class QuestionController {
         return new ResponseEntity<>(HttpStatus.OK.value(), questionsList);
     }
 
+    @GetMapping("/listMyQuestion/")
+    ResponseEntity<List<Questions>> listMyQuestions(){
+        User user = userService.findById((Long)httpSession.getAttribute(USER_ID));
+        List<Questions> questionsList = questionService.listMyQuestions(user);
+        return new ResponseEntity<>(HttpStatus.OK.value(), questionsList);
+    }
+
 }

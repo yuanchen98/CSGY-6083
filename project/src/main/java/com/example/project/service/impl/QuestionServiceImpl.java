@@ -1,6 +1,7 @@
 package com.example.project.service.impl;
 
 import com.example.project.entity.Questions;
+import com.example.project.entity.User;
 import com.example.project.entity.exception.SystemGlobalException;
 import com.example.project.repository.QuestionRepository;
 import com.example.project.service.QuestionService;
@@ -49,5 +50,10 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public List<Questions> listSubCatgoryQuestions(Long ctgyId) {
         return questionRepository.findAllBySubCategoryId(ctgyId);
+    }
+
+    @Override
+    public List<Questions> listMyQuestions(User user) {
+        return questionRepository.findAllByUser(user);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.project.repository;
 
 import com.example.project.entity.Questions;
+import com.example.project.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -27,7 +28,7 @@ public interface QuestionRepository extends JpaRepository<Questions, Long> {
             "                     natural join t2\n" +
             "                     natural join t3\n" +
             "            group by id\n" +
-            "            order by sum(title_score) + sum(body_score) + sum(answer_body_score) desc)\n" +
+            "            order by sum(title_score) + sum(body_score) + sum(answer_body_score) desc limit 8)\n" +
             "select *\n" +
             "from t4\n" +
             "         join questions on t4.id = questions.question_id order by score desc ;", nativeQuery=true)
@@ -45,4 +46,6 @@ public interface QuestionRepository extends JpaRepository<Questions, Long> {
             "from questions q\n" +
             "where q.sub_category_id = ?1 order by post_time desc",nativeQuery = true)
     List<Questions> findAllBySubCategoryId(Long ctgyId);
+
+    List<Questions> findAllByUser(User user);
 }
