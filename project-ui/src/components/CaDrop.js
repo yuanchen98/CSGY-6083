@@ -43,9 +43,13 @@ const CaDrop = (props) => {
 	const handlesubcategory = (event) => {
 		const getsubcategoryid = event.target.value;
 		setSubCategoryId(getsubcategoryid);
-        props.setCategoryId(getsubcategoryid)
+        props.setCtgy(subcategory[getsubcategoryid]);
+        props.setCategoryId(props.ctgy.subCategoryId);
 		event.preventDefault();
 	};
+
+    console.log(props.ctgy);
+    console.log(props.categoryId);
 
     // console.log(props.categoryId)
 
@@ -80,8 +84,8 @@ const CaDrop = (props) => {
 							onChange={(e) => handlesubcategory(e)}
 						>
 							<option>--Select--</option>
-							{subcategory && subcategory.map((st) => (
-								<option key={st.subCategoryId} value={st.subCategoryId}>
+							{subcategory && subcategory.map((st, index) => (
+								<option key={st.subCategoryId} value={index}>
 									{st.subCategoryName}
 								</option>
 							))}

@@ -1,8 +1,42 @@
 import React, { useState, useEffect } from "react";
 import CaDrop from "./CaDrop";
+import { Link, useNavigate } from "react-router-dom";
 
 const PostQuestion = () => {
+    const navigate = useNavigate();
 	const [categoryId, setCategoryId] = useState("");
+	const [ctgy, setCtgy] = useState();
+
+	const onSubmit = (e) => {
+		e.preventDefault();
+
+		const formData = new FormData(e.target);
+
+		fetch("http://localhost:8080/api/question/post", {
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				title: formData.get("title"),
+				body: formData.get("detail"),
+				//locationId: cityid,
+                subCategory: ctgy,
+				// subCategory: categoryId,
+			}),
+		})
+			
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data);
+				if (data.code === 200) {
+					navigate("/home");
+                    alert("Post success");
+				}
+			})
+			.catch((err) => err);
+	};
 
 	return (
 		<div className="px-48 pt-6 ">
@@ -20,7 +54,7 @@ const PostQuestion = () => {
 							</div>
 						</div>
 						<div className="mt-5 md:mt-0 md:col-span-2">
-							<form action="#" method="POST">
+							<form onSubmit={onSubmit} method="POST">
 								<div className="shadow sm:rounded-md sm:overflow-hidden">
 									<div className="px-4 py-5 bg-white space-y-6 sm:p-6">
 										<div className="grid grid-cols-3 gap-6">
@@ -39,10 +73,12 @@ const PostQuestion = () => {
 												</div>
 											</div>
 										</div>
-										<div >
-											<CaDrop 
+										<div>
+											<CaDrop
 												categoryId={categoryId}
 												setCategoryId={setCategoryId}
+												ctgy={ctgy}
+												setCtgy={setCtgy}
 											></CaDrop>
 										</div>
 
