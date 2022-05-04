@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import CaDrop from "./CaDrop";
 import { Link, useNavigate } from "react-router-dom";
 
-const NewAnswer = () => {
+const NewAnswer = (props) => {
+    const questions = props.questions;
+    const question = questions[0];
 
     const navigate = useNavigate();
-	const [categoryId, setCategoryId] = useState("");
-	const [ctgy, setCtgy] = useState();
+	// const [categoryId, setCategoryId] = useState("");
+	// const [ctgy, setCtgy] = useState();
 
 
 	const onSubmit = (e) => {
@@ -14,7 +16,7 @@ const NewAnswer = () => {
 
 		const formData = new FormData(e.target);
 
-		fetch("api/question/post", {
+		fetch("http://localhost:3000/api/answer/post", {
 			credentials: "include",
 			method: "POST",
 			headers: {
@@ -22,10 +24,11 @@ const NewAnswer = () => {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
-				title: formData.get("title"),
-				body: formData.get("detail"),
+				//title: formData.get("title"),
+                questions: question,
+				body: formData.get("detail")
 				//locationId: cityid,
-				subCategory: ctgy,
+				// subCategory: ctgy,
 				// subCategory: categoryId,
 			}),
 		})
@@ -34,7 +37,7 @@ const NewAnswer = () => {
 				console.log(data);
 				if (data.code === 200) {
 					alert("Post success");
-					navigate("/home", { refresh: Math.random() });
+					navigate(`/list/${question.questionId}`, { refresh: Math.random() });
 					window.location.reload();
 				}
 			})
@@ -70,7 +73,7 @@ const NewAnswer = () => {
 														type="text"
 														name="title"
 														id="title"
-														className="rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 flex-1 block w-full sm:text-sm border-gray-300"
+														className="rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 flex-1 block w-full sm:text-sm border-gray-300"
 														placeholder="Title"
 													/>
 												</div>
@@ -108,7 +111,7 @@ const NewAnswer = () => {
 									<div className="px-4 py-2 bg-gradient-to-r from-rose-50 via-pink-50 to-fuchsia-50 text-right sm:px-6">
 										<button
 											type="submit"
-											className="tracking-wider inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-rose-300 hover:bg-rose-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+											className="tracking-wider inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-rose-300 hover:bg-rose-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400"
 										>
 											POST
 										</button>
