@@ -4,6 +4,8 @@ import { LockClosedIcon } from "@heroicons/react/solid";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import Cookies from 'js-cookie'
+
 
 function App() {
 	const navigate = useNavigate();
@@ -13,7 +15,7 @@ function App() {
 
 		const formData = new FormData(e.target);
 
-		fetch("http://localhost:8080/api/user/login", {
+		fetch("api/user/login", {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
@@ -28,6 +30,7 @@ function App() {
 			.then((data) => {
 				console.log(data);
 				if (data.code === 200) {
+                    
 					navigate('/home');
 				}
 			})

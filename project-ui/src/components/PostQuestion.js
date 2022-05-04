@@ -3,7 +3,7 @@ import CaDrop from "./CaDrop";
 import { Link, useNavigate } from "react-router-dom";
 
 const PostQuestion = () => {
-    const navigate = useNavigate();
+	const navigate = useNavigate();
 	const [categoryId, setCategoryId] = useState("");
 	const [ctgy, setCtgy] = useState();
 
@@ -12,7 +12,8 @@ const PostQuestion = () => {
 
 		const formData = new FormData(e.target);
 
-		fetch("http://localhost:8080/api/question/post", {
+		fetch("api/question/post", {
+			credentials: "include",
 			method: "POST",
 			headers: {
 				Accept: "application/json",
@@ -22,17 +23,17 @@ const PostQuestion = () => {
 				title: formData.get("title"),
 				body: formData.get("detail"),
 				//locationId: cityid,
-                subCategory: ctgy,
+				subCategory: ctgy,
 				// subCategory: categoryId,
 			}),
 		})
-			
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
 				if (data.code === 200) {
-					navigate("/home");
-                    alert("Post success");
+					alert("Post success");
+					navigate("/home", { refresh: Math.random() });
+					window.location.reload();
 				}
 			})
 			.catch((err) => err);

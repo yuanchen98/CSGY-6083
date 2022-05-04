@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const CATEGORY_BASE_URL = "http://localhost:8080/api/category/"
+// const CATEGORY_BASE_URL = "http://localhost:8080/api/category/"
+const CATEGORY_BASE_URL = "api/category/"
+
 
 class CategoryService{
     listMainCategory(){
