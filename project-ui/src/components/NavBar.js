@@ -198,16 +198,17 @@ const NavBar = () => {
 											{maincategory.map((item) => (
 												<Menu.Item>
 													{({ active }) => (
-														<a
+														<Link
                                                             key={item.categoryId}
-															href="#"
+															target="_blank"
+												            to={{ pathname: `/listCategoryQuestion/${item.categoryId}` }}
 															className={classNames(
 																active ? "bg-purple-100 hover:ring-2 hover:ring-pink-300 rounded-md ring-inset " : "",
 																"block px-4 py-2 text-sm text-purple-700 "
 															)}
 														>
 															{item.categoryName}
-														</a>
+														</Link>
 													)}
 												</Menu.Item>
 											))}

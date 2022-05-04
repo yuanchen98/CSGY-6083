@@ -11,6 +11,7 @@ import Post from "./components/Post";
 import SearchResult from "./components/SearchResult";
 import PostQuestion from "./components/PostQuestion";
 import CaDrop from "./components/CaDrop";
+import CategoryQuestionResult from "./components/CategoryQuestionResult";
 // import Login from "./pages/simplerouter/login";
 // import Home from "./pages/simplerouter/home";
 
@@ -32,9 +33,10 @@ export default function IRouter() {
                 <Route exact path="/regist" element={<Regist />}></Route>
 				<Route exact path="/list/:id" element={<Answer />} ></Route>
                 <Route exact path="/listRelated/:text" element={<SearchResult />} ></Route>
+                <Route exact path="/listCategoryQuestion/:ctgyId" element={<CategoryQuestionResult />} ></Route>
 
 
-                <Route exact path="/test" element={<CaDrop />}></Route>
+                <Route exact path="/test" element={<CategoryQuestionResult />}></Route>
 			</Routes>
 		</Router>
 	);
