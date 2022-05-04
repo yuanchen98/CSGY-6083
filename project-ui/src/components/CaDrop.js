@@ -65,7 +65,7 @@ const CaDrop = (props) => {
                             text-sm h-8 shadow-sm focus:ring-purple-500 focus:border-purple-500 w-full border border-gray-300 rounded-md pt-1"
 							onChange={(e) => handlecategory(e)}
 						>
-							<option>--Select--</option>
+							<option className="z-10">--Select--</option>
 							{maincategory && maincategory.map((getcon) => (
                                 
 								<option key={getcon.categoryId} value={getcon.categoryId}>

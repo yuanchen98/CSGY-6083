@@ -7,7 +7,7 @@ const AnswerPost = (props) => {
 	// console.log(answers);
 
 	return (
-		<div className="container mx-auto px-4 sm:px-3 md:px-5 py-8">
+		<div className="container mx-auto px-4 sm:px-3 md:px-5 py-8 overflow-hidden">
 			<ul className="space-y-8">
 				{answers.map((answer) => (
 					<li className="text-sm leading-6 " key={answer.answerId}>

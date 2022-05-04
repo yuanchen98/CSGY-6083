@@ -17,7 +17,7 @@ import QuestionService from "../service/QuestionService";
 import CategoryService from "../service/CategoryService";
 
 const navigation = [
-	{ name: "Dashboard", href: "/home", current: true },
+	{ name: "Dashboard", href: "/home", current: false },
 	{ name: "My Questions", href: "/myQuestion", current: false },
 	{ name: "My Answers", href: "/myAnswer", current: false },
 	// { name: "Calendar", href: "/home", current: false },
@@ -194,7 +194,7 @@ const NavBar = () => {
 										leaveFrom="transform opacity-100 scale-100"
 										leaveTo="transform opacity-0 scale-95"
 									>
-										<Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+										<Menu.Items className="z-10 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
 											{maincategory.map((item) => (
 												<Menu.Item>
 													{({ active }) => (
