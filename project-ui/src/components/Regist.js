@@ -17,7 +17,7 @@ const Regist = () => {
 		const formData = new FormData(e.target);
         console.log(cityid);
 
-		fetch("http://localhost:8080/api/user/regist", {
+		fetch("http://localhost:3000/api/user/regist", {
 			method: "POST",
 			headers: {
 				Accept: "application/json",

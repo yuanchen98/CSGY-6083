@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // const QUESTION_BASE_URL = "http://localhost:8080/api/question/"
-const QUESTION_BASE_URL = "api/question/"
+const QUESTION_BASE_URL = "http://localhost:3000/api/question/"
 
 
 class QuestionService{

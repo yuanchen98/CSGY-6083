@@ -14,7 +14,7 @@ import logo from "../pics/NYU_Short_RGB_Color.png";
 import avator from "../pics/avatar.png";
 import axios from "axios";
 import QuestionService from "../service/QuestionService";
-
+import CategoryService from "../service/CategoryService";
 
 const navigation = [
 	{ name: "Dashboard", href: "/home", current: true },
@@ -33,6 +33,11 @@ const NavBar = () => {
 
 	const node = useRef();
 	const [user, showText] = useState(false);
+
+	const [maincategory, setMaincategory] = useState([]);
+	const [maincategoryid, setMaincategoryId] = useState("");
+	const [subcategory, setSubCategory] = useState([]);
+	const [subcategoryid, setSubCategoryId] = useState("");
 
 	const setShowText = (user) => {
 		return showText(!user);
@@ -80,6 +85,48 @@ const NavBar = () => {
 
 	// console.log(suggest);
 
+	// const [cityid, setCityid] = useState("");
+	// console.log(props.cityid);
+
+	useEffect(() => {
+		const getCategory = async () => {
+			try {
+				const getres = await CategoryService.listMainCategory();
+				console.log(getres.data.data);
+				setMaincategory(await getres.data.data);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		getCategory();
+	}, []);
+
+	const handlecategory = (event) => {
+		const getmaincategoryid = event.target.value;
+		setMaincategoryId(getmaincategoryid);
+		event.preventDefault();
+	};
+
+	useEffect(() => {
+		const getsubcategory = async () => {
+			const getst = await CategoryService.listSubCategory(maincategoryid);
+			console.log(getst.data.data);
+			setSubCategory(await getst.data.data);
+		};
+		getsubcategory();
+	}, [maincategoryid]);
+
+	const handlesubcategory = (event) => {
+		const getsubcategoryid = event.target.value;
+		setSubCategoryId(getsubcategoryid);
+		//props.setCtgy(subcategory[getsubcategoryid]);
+		//props.setCategoryId(props.ctgy.subCategoryId);
+		event.preventDefault();
+	};
+
+	//console.log(props.ctgy);
+	//console.log(props.categoryId);
+
 	return (
 		<Disclosure as="nav" className="bg-purple-200">
 			{({ open }) => (
@@ -112,7 +159,7 @@ const NavBar = () => {
 								</div>
 								<div className="hidden sm:block sm:ml-6">
 									<div className="flex space-x-4">
-										{navigation.map((item) => (
+                                    {navigation.map((item) => (
 											<Link
 												key={item.name}
 												to={item.href}
@@ -130,10 +177,12 @@ const NavBar = () => {
 									</div>
 								</div>
 
-                                <Menu as="div" className="ml-3 relative">
+								<Menu as="div" className="ml-3 relative">
 									<div>
 										<Menu.Button className=" bg-purple-200 inline-flex items-center justify-center rounded-md text-purple-700 hover:text-white hover:bg-purple-700 focus:outline-none focus:ring-2">
-											<span className="text-purple-500 hover:bg-purple-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Category</span>
+											<span className="text-purple-500 hover:bg-purple-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+												Category
+											</span>
 										</Menu.Button>
 									</div>
 									<Transition
@@ -146,22 +195,24 @@ const NavBar = () => {
 										leaveTo="transform opacity-0 scale-95"
 									>
 										<Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-											<Menu.Item>
-												{({ active }) => (
-													<a
-														href="#"
-														className={classNames(
-															active ? "bg-purple-100" : "",
-															"block px-4 py-2 text-sm text-purple-700"
-														)}
-													>
-														Sign out
-													</a>
-												)}
-											</Menu.Item>
+											{maincategory.map((item) => (
+												<Menu.Item>
+													{({ active }) => (
+														<a
+                                                            key={item.categoryId}
+															href="#"
+															className={classNames(
+																active ? "bg-purple-100 hover:ring-2 hover:ring-pink-300 rounded-md ring-inset " : "",
+																"block px-4 py-2 text-sm text-purple-700 "
+															)}
+														>
+															{item.categoryName}
+														</a>
+													)}
+												</Menu.Item>
+											))}
 										</Menu.Items>
 									</Transition>
-                                    
 								</Menu>
 								{/* <div>{text}</div> */}
 								<div className="flex relative">
@@ -188,7 +239,7 @@ const NavBar = () => {
 															<div className="rounded-lg hover:ring-2 hover:ring-pink-300 hover:ring-inset py-1">
 																<NavLink
 																	target="_blank"
-																	to={{ pathname: `/list/${ress.questionId}`}}
+																	to={{ pathname: `/list/${ress.questionId}` }}
 																	className="h-full"
 																>
 																	{ress.title}
@@ -290,7 +341,6 @@ const NavBar = () => {
 											</Menu.Item>
 										</Menu.Items>
 									</Transition>
-                                    
 								</Menu>
 							</div>
 						</div>
