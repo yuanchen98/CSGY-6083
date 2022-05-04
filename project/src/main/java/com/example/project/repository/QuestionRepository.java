@@ -32,4 +32,12 @@ public interface QuestionRepository extends JpaRepository<Questions, Long> {
             "from t4\n" +
             "         join questions on t4.id = questions.question_id order by score desc ;", nativeQuery=true)
     List<Questions> findRelatedQuestions(String text);
+
+
+    @Query(value = "select *\n" +
+            "from questions q\n" +
+            "         join sub_category on q.sub_category_id = sub_category.sub_category_id\n" +
+            "         join main_category mc on mc.category_id = sub_category.category_id\n" +
+            "where mc.category_id = ?1", nativeQuery = true)
+    List<Questions> listCatgoryQuestions(Long ctgyId);
 }

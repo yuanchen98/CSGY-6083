@@ -76,4 +76,11 @@ public class QuestionController {
         questionService.saveNewQuestion(questions);
         return new ResponseEntity<>(HttpStatus.OK.value(), "Save new question", questions);
     }
+
+    @GetMapping("/listCategory/{ctgyId}")
+    ResponseEntity<List<Questions>> listRelatedQuestion(@PathVariable Long ctgyId){
+        List<Questions> questionsList = questionService.listCatgoryQuestions(ctgyId);
+        return new ResponseEntity<>(HttpStatus.OK.value(), questionsList);
+    }
+
 }

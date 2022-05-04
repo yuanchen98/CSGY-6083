@@ -16,4 +16,6 @@ public interface QuestionService {
     List<Questions> listRelatedQuestion(String text);
 
     Questions saveNewQuestion(Questions questions);
+
+    List<Questions> listCatgoryQuestions(Long ctgyId);
 }

@@ -40,4 +40,9 @@ public class QuestionServiceImpl implements QuestionService {
     public Questions saveNewQuestion(Questions questions){
         return questionRepository.saveAndFlush(questions);
     }
+
+    @Override
+    public List<Questions> listCatgoryQuestions(Long ctgyId) {
+        return questionRepository.listCatgoryQuestions(ctgyId);
+    }
 }
