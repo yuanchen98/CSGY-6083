@@ -18,9 +18,9 @@ import CategoryService from "../service/CategoryService";
 
 const navigation = [
 	{ name: "Dashboard", href: "/home", current: true },
-	{ name: "Team", href: "/home", current: false },
-	{ name: "Projects", href: "/home", current: false },
-	{ name: "Calendar", href: "/home", current: false },
+	{ name: "My Questions", href: "/myQuestion", current: false },
+	{ name: "My Answers", href: "/myAnswer", current: false },
+	// { name: "Calendar", href: "/home", current: false },
 ];
 
 function classNames(...classes) {

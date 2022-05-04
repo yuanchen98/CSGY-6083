@@ -52,7 +52,7 @@ const SearchResult = () => {
 
             <blockquote class="text-xl ml-32 mt-8 font-semibold italic text-left text-slate-900">
 				Search Result for
-				<span class="mx-1 px-1 bg-purple-300 relative inline-block">
+				<span class="mx-1 px-2 bg-purple-300 relative inline-block ">
 					<span class="relative text-white">{text}</span>
 				</span>
 				

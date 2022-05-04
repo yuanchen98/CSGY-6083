@@ -54,7 +54,7 @@ const CaDrop = (props) => {
     // console.log(props.categoryId)
 
 	return (
-		<div className="container ">
+		<div className="container">
 			<div className="flex mt-6 mb-4  text-sm font-medium text-gray-700 ">
 				
 					<div className="w-32">
