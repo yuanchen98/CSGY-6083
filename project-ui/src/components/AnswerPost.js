@@ -5,17 +5,16 @@ import AnswerService from "../service/AnswerService";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
 const AnswerPost = (props) => {
-    const navigate = useNavigate();
+	const navigate = useNavigate();
 	const answers = props.answers;
 	// console.log(answers);
 
-    const refreshPage = () => {
-        navigate(0);
-    }
+	const refreshPage = () => {
+		navigate(0);
+	};
 
-    const handleLike = (answer) => {
+	const handleLike = (answer) => {
 		fetch("http://localhost:3000/api/answer/like", {
 			credentials: "include",
 			method: "POST",
@@ -36,11 +35,10 @@ const AnswerPost = (props) => {
 				// 	navigate("/home", { refresh: Math.random() });
 				// 	window.location.reload();
 				// }
-                refreshPage();
+				refreshPage();
 			})
 			.catch((err) => err);
 	};
-
 
 	return (
 		<div className="container mx-auto px-4 sm:px-3 md:px-5 py-8 overflow-hidden">
@@ -55,24 +53,30 @@ const AnswerPost = (props) => {
 									>
 										Posted in "{answer.questions.title}"
 									</Link>
-                                    {answer.likes}
 								</div>
-								<button onClick={() => {handleLike(answer)}}>
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										className="h-8 w-8 ml-2"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke="#c084fc"
-										strokeWidth={2}
+								<div className="flex ">
+									<button
+										onClick={() => {
+											handleLike(answer);
+										}}
 									>
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
-										/>
-									</svg>
-								</button>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											className="h-8 w-8 ml-2"
+											fill="none"
+											viewBox="0 0 24 24"
+											stroke="#c084fc"
+											strokeWidth={2}
+										>
+											<path
+												strokeLinecap="round"
+												strokeLinejoin="round"
+												d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
+											/>
+										</svg>
+									</button>
+									<div className="h-8 w-8 ml-2 text-xl subpixel-antialiased text-purple-400 mt-1">{answer.likes}</div>
+								</div>
 							</div>
 
 							<figcaption className="flex items-center space-x-4">
@@ -89,7 +93,7 @@ const AnswerPost = (props) => {
 										// tabIndex="0"
 										>
 											{/* {answer.answerBody} */}
-                                            {answer.body}
+											{answer.body}
 										</a>
 									</div>
 									<div className="mt-0.5">Posted by {answer.user.username}</div>
