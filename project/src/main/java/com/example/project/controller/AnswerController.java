@@ -5,6 +5,7 @@ import com.example.project.entity.Questions;
 import com.example.project.entity.Thumbs;
 import com.example.project.entity.User;
 import com.example.project.entity.response.ResponseEntity;
+import com.example.project.model.AnswerDisplayFactory;
 import com.example.project.model.AnswerPostFactory;
 import com.example.project.service.AnswerService;
 import com.example.project.service.ThumbService;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.example.project.entity.constant.SystemConstant.USER_ID;
 
@@ -41,11 +43,13 @@ public class AnswerController {
     @Autowired
     private ThumbService thumbService;
 
+    @Autowired AnswerDisplayFactory answerDisplayFactory;
 
     @GetMapping("/list/{questionId}")
-    ResponseEntity<List<Answers>> listAnswer(@PathVariable Long questionId){
+    ResponseEntity<List<AnswerDisplayFactory.AnswerDisplay>> listAnswer(@PathVariable Long questionId){
         List<Answers> answerslist = answerService.listAnswers(questionId);
-        return new ResponseEntity<>(HttpStatus.OK.value(), "find related answers successfully", answerslist);
+        List<AnswerDisplayFactory.AnswerDisplay> res = answerslist.stream().map(answerDisplayFactory.pojoToDTO).collect(Collectors.toList());
+        return new ResponseEntity<>(HttpStatus.OK.value(), "find related answers successfully", res);
     }
 
     @PostMapping("/post")
@@ -62,10 +66,11 @@ public class AnswerController {
     }
 
     @GetMapping("/listMyAnswer/")
-    ResponseEntity<List<Answers>> listMyAnswers(){
+    ResponseEntity<List<AnswerDisplayFactory.AnswerDisplay>> listMyAnswers(){
         User user = userService.findById((Long)httpSession.getAttribute(USER_ID));
         List<Answers> answerList = answerService.listMyAnswer(user);
-        return new ResponseEntity<>(HttpStatus.OK.value(), answerList);
+        List<AnswerDisplayFactory.AnswerDisplay> res = answerList.stream().map(answerDisplayFactory.pojoToDTO).collect(Collectors.toList());
+        return new ResponseEntity<>(HttpStatus.OK.value(), res);
     }
 
     @PostMapping("like")

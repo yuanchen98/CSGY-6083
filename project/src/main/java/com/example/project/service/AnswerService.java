@@ -14,4 +14,6 @@ public interface AnswerService {
     Answers saveNewAnswer(Answers answers);
 
     List<Answers> listMyAnswer(User user);
+
+    Long getLikes(Answers answers);
 }

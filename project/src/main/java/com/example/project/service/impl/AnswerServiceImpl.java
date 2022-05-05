@@ -30,4 +30,9 @@ public class AnswerServiceImpl implements AnswerService {
     public List<Answers> listMyAnswer(User user) {
         return answerRepository.findAllByUserOrderByPostTimeDesc(user);
     }
+
+    @Override
+    public Long getLikes(Answers answers) {
+        return answerRepository.getLikes(answers.getAnswerId());
+    }
 }

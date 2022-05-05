@@ -3,10 +3,17 @@ import avator from "../pics/boxer.png";
 import { Link, NavLink } from "react-router-dom";
 import AnswerService from "../service/AnswerService";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 const AnswerPost = (props) => {
+    const navigate = useNavigate();
 	const answers = props.answers;
 	// console.log(answers);
+
+    const refreshPage = () => {
+        navigate(0);
+    }
 
     const handleLike = (answer) => {
 		fetch("http://localhost:3000/api/answer/like", {
@@ -29,6 +36,7 @@ const AnswerPost = (props) => {
 				// 	navigate("/home", { refresh: Math.random() });
 				// 	window.location.reload();
 				// }
+                refreshPage();
 			})
 			.catch((err) => err);
 	};
@@ -47,6 +55,7 @@ const AnswerPost = (props) => {
 									>
 										Posted in "{answer.questions.title}"
 									</Link>
+                                    {answer.likes}
 								</div>
 								<button onClick={() => {handleLike(answer)}}>
 									<svg
@@ -79,7 +88,8 @@ const AnswerPost = (props) => {
 										// href="https://twitter.com/ryanflorence/status/1187951799442886656"
 										// tabIndex="0"
 										>
-											{answer.answerBody}
+											{/* {answer.answerBody} */}
+                                            {answer.body}
 										</a>
 									</div>
 									<div className="mt-0.5">Posted by {answer.user.username}</div>

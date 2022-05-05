@@ -15,4 +15,7 @@ public interface AnswerRepository extends JpaRepository<Answers, Long> {
 
     List<Answers> findAllByUserOrderByPostTimeDesc(User user);
 
+    @Query(value = "select count(*) from thumbs\n" +
+            "where answer_id = ?1", nativeQuery = true)
+    Long getLikes(Long answerId);
 }
