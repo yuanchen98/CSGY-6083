@@ -41,6 +41,7 @@ export default function IRouter() {
                 <Route exact path="/listSubCategoryQuestion/:ctgyId" element={<SubCategoryQuestionResult />} ></Route>
                 <Route exact path="/myQuestion" element={<MyQuestion />}></Route>
                 <Route exact path="/myAnswer" element={<MyAnswer />}></Route>
+                <Route exact path="/profile" element={<Profile />}></Route>
 
 
                 <Route exact path="/test" element={<Profile />}></Route>

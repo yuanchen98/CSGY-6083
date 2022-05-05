@@ -70,4 +70,13 @@ public class PageController {
         return new ResponseEntity<>(HttpStatus.OK.value(), "Find user profile success", user);
     }
 
+    @PostMapping(value = "updateProfile/")
+    @ResponseBody
+    public ResponseEntity<User> updateProfile(@RequestBody @Valid String profile){
+        User user = userService.findById((Long)httpSession.getAttribute(USER_ID));
+        user.setProfile(profile);
+        user = userService.updateProfile(user);
+        return new ResponseEntity<>(HttpStatus.OK.value(), "update profile success", user);
+    }
+
 }

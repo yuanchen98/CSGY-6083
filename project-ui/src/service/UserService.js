@@ -9,6 +9,10 @@ class UserService{
         return axios.get(USER_BASE_URL+`signOut/`);
     }
 
+    userProfile(){
+        return axios.get(USER_BASE_URL+`userProfile/`);
+    }
+
     // giveLike(answer){
     //     return axios.post(ANSWER_BASE_URL+`like/`,{answer});
     // }

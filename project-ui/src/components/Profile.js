@@ -1,10 +1,66 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import avator from "../pics/avatar.png";
 import NavBar from "./NavBar";
 import Editable from "./Editable";
+import UserService from "../service/UserService";
+import { Link, useNavigate } from "react-router-dom";
 
 const Profile = () => {
+    const navigate = useNavigate();
+
 	const [task, setTask] = useState("");
+
+    const [user, setUsr] = useState();
+
+    const [loading, setLoading] = useState(true);
+	const [questions, setQuestions] = useState();
+
+    useEffect(() => {
+		const fetchData = async () => {
+			setLoading(true);
+			try {
+				const response = await UserService.userProfile();
+                // const responswAnswer= await AnswerService.listAnswers(id);
+				// console.log(response.data.data);
+                // console.log(responswAnswer.data.data);
+                // setAnswers(responswAnswer.data.data);
+				// setQuestions([response.data.data]);
+                setUsr(response.data.data);
+                setTask(response.data.data.profile);
+
+			} catch (error) {
+				console.log(error);
+			}
+			setLoading(false);
+		};
+		fetchData();
+	}, []);
+
+	const onClick = (e) => {
+		e.preventDefault();
+
+		fetch("http://localhost:3000/api/user/updateProfile/", {
+			credentials: "include",
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+			body: `${task}`,
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data);
+				if (data.code === 200) {
+					alert("Update profile success");
+					navigate(`/profile/`, { refresh: Math.random() });
+					window.location.reload();
+				}
+			})
+			.catch((err) => err);
+	};
+
+
 
 	return (
 		<div>
@@ -19,20 +75,20 @@ const Profile = () => {
 						width="full"
 						height=""
 					></img>
-					<div className="pt-6 md:p-8 text-center md:text-left space-y-4  w-2/3">
+					{!loading && <div className="pt-6 md:p-8 text-center md:text-left space-y-4  w-2/3">
 						<blockquote>
 							<p className="text-lg font-medium tracking-wide">MY PROFILE</p>
 						</blockquote>
 						<figcaption className="font-medium">
 							<div className="text-violet-600 dark:text-violet-600 text-lg">
-								Sarah Dayan
+								{user.username}
 							</div>
 							<div className="text-violet-400 dark:text-violet-400">
-								Location: Staff Engineer, Algolia
+								Location: {user.location.city}, {user.location.state}, {user.location.country}
 							</div>
 
 							<div className="text-violet-400 dark:text-violet-400">
-								User ID:
+								User ID: {user.userId}
 							</div>
 						</figcaption>
 						<blockquote className="h-16">
@@ -62,13 +118,14 @@ const Profile = () => {
 							</Editable>
 						</blockquote>
 					</div>
+                    }
                     </div>
 					<div className="px-4 py-3 bg-purple-50 text-right sm:px-6">
 						<button
-							type="submit"
+							onClick={onClick}
 							className="tracking-wider mt-52 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
 						>
-							POST
+							UPDATE
 						</button>
 					</div>
 				</figure>
