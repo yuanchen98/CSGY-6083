@@ -56,4 +56,10 @@ public class PageController {
         return new ResponseEntity<>(HttpStatus.OK.value(), "Regist success", user);
     }
 
+    @GetMapping(value = "/signOut")
+    public ResponseEntity<Void> signOut(){
+        httpSession.removeAttribute(USER_ID);
+        return new ResponseEntity<>(HttpStatus.OK.value(),"Sign out success");
+    }
+
 }

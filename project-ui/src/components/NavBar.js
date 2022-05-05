@@ -15,6 +15,7 @@ import avator from "../pics/avatar.png";
 import axios from "axios";
 import QuestionService from "../service/QuestionService";
 import CategoryService from "../service/CategoryService";
+import UserService from "../service/UserService";
 
 const navigation = [
 	{ name: "Dashboard", href: "/home", current: false },
@@ -345,15 +346,16 @@ const NavBar = () => {
 											</Menu.Item>
 											<Menu.Item>
 												{({ active }) => (
-													<a
-														href="#"
+													<Link
+                                                        onClick={() => UserService.signOut()}
+														to={{ pathname: `/` }}
 														className={classNames(
 															active ? "bg-purple-100" : "",
 															"block px-4 py-2 text-sm text-purple-700"
 														)}
 													>
 														Sign out
-													</a>
+													</Link>
 												)}
 											</Menu.Item>
 										</Menu.Items>
