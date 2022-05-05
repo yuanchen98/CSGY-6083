@@ -71,7 +71,7 @@ function App() {
 						<div className="rounded-md shadow-sm -space-y-px">
 							<div>
 								<label htmlFor="userId-address" className="sr-only">
-									userId address
+									UserId address
 								</label>
 								<input
 									id="userId-address"
@@ -80,7 +80,7 @@ function App() {
 									autoComplete="userId"
 									required
 									className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"
-									placeholder="userId address"
+									placeholder="User ID"
 									// onFocus={onUserIdFocus}
 								/>
 							</div>
@@ -102,7 +102,7 @@ function App() {
 						</div>
 
 						<div className="flex items-center justify-between">
-							<div className="flex items-center">
+							{/* <div className="flex items-center">
 								<input
 									id="remember-me"
 									name="remember-me"
@@ -116,16 +116,16 @@ function App() {
 								>
 									Remember me
 								</label>
-							</div>
+							</div> */}
 
-							<div className="text-sm">
+							{/* <div className="text-sm">
 								<a
 									href="#"
 									className="font-medium text-purple-700 hover:text-purple-500"
 								>
 									Forgot your password?
 								</a>
-							</div>
+							</div> */}
 						</div>
 
 						<div>
