@@ -2,10 +2,12 @@ package com.example.project.controller;
 
 import com.example.project.entity.Answers;
 import com.example.project.entity.Questions;
+import com.example.project.entity.Thumbs;
 import com.example.project.entity.User;
 import com.example.project.entity.response.ResponseEntity;
 import com.example.project.model.AnswerPostFactory;
 import com.example.project.service.AnswerService;
+import com.example.project.service.ThumbService;
 import com.example.project.service.UserService;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,9 @@ public class AnswerController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ThumbService thumbService;
+
 
     @GetMapping("/list/{questionId}")
     ResponseEntity<List<Answers>> listAnswer(@PathVariable Long questionId){
@@ -61,5 +66,15 @@ public class AnswerController {
         User user = userService.findById((Long)httpSession.getAttribute(USER_ID));
         List<Answers> answerList = answerService.listMyAnswer(user);
         return new ResponseEntity<>(HttpStatus.OK.value(), answerList);
+    }
+
+    @PostMapping("like")
+    ResponseEntity<Thumbs> giveLike(@RequestBody @Valid Answers answers, BindingResult bindingResult){
+        User user = userService.findById((Long)httpSession.getAttribute(USER_ID));
+        Thumbs thumbs= new Thumbs();
+        thumbs.setAnswers(answers);
+        thumbs.setUser(user);
+        Thumbs tb = thumbService.saveLike(thumbs);
+        return new ResponseEntity<>(HttpStatus.OK.value(), tb);
     }
 }

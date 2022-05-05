@@ -1,27 +1,30 @@
 package com.example.project.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "thumbs")
 public class Thumbs {
 
-  private long answerId;
-  private long userId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long thumbId;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = true, updatable = false)
+    private User user;
 
-  public long getAnswerId() {
-    return answerId;
-  }
-
-  public void setAnswerId(long answerId) {
-    this.answerId = answerId;
-  }
-
-
-  public long getUserId() {
-    return userId;
-  }
-
-  public void setUserId(long userId) {
-    this.userId = userId;
-  }
+    @ManyToOne
+    @JoinColumn(name = "answer_id" ,referencedColumnName = "answer_id", insertable = true, updatable = false)
+    private Answers answers;
 
 }

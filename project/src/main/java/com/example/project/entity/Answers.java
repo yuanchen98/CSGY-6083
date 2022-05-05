@@ -14,6 +14,7 @@ import javax.persistence.*;
 public class Answers {
 
     @Id
+    @Column(name="answer_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long answerId;
 
@@ -22,6 +23,7 @@ public class Answers {
     private Questions questions;
 
     @ManyToOne
+
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = true, updatable = false)
     private User user;
 
