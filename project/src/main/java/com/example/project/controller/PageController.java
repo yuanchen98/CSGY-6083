@@ -53,6 +53,7 @@ public class PageController {
         }
         User user = userRegistFactory.rpoToPojo.apply(userRegist);
         user = userService.regist(user);
+        httpSession.setAttribute(USER_ID, user.getUserId());
         return new ResponseEntity<>(HttpStatus.OK.value(), "Regist success", user);
     }
 

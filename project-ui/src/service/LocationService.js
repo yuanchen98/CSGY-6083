@@ -9,7 +9,7 @@ class LocationService{
     }
 
     listCtys(){
-        return axios.get(LOCATION_BASE_URL+`country`);
+        return axios.get(LOCATION_BASE_URL+`country/`);
     }
 
     listCities(cty, st){

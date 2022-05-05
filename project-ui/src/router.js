@@ -15,6 +15,7 @@ import CategoryQuestionResult from "./components/CategoryQuestionResult";
 import SubCategoryQuestionResult from "./components/SubCategoryQuestionResult";
 import MyAnswer from "./components/MyAnswer";
 import MyQuestion from "./components/MyQuestion";
+import Profile from "./components/Profile";
 // import Login from "./pages/simplerouter/login";
 // import Home from "./pages/simplerouter/home";
 
@@ -42,7 +43,7 @@ export default function IRouter() {
                 <Route exact path="/myAnswer" element={<MyAnswer />}></Route>
 
 
-                <Route exact path="/test" element={<CategoryQuestionResult />}></Route>
+                <Route exact path="/test" element={<Profile />}></Route>
 			</Routes>
 		</Router>
 	);
