@@ -63,4 +63,11 @@ public class PageController {
         return new ResponseEntity<>(HttpStatus.OK.value(),"Sign out success");
     }
 
+    @GetMapping(value = "/userProfile/")
+    @ResponseBody
+    public ResponseEntity<User> userProfile(){
+        User user = userService.findById((Long)httpSession.getAttribute(USER_ID));
+        return new ResponseEntity<>(HttpStatus.OK.value(), "Find user profile success", user);
+    }
+
 }
