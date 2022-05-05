@@ -207,7 +207,7 @@ const NavBar = () => {
 										leaveFrom="transform opacity-100 scale-100"
 										leaveTo="transform opacity-0 scale-95"
 									>
-										<Menu.Items className="z-10 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+										<Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
 											{maincategory.map((item) => (
 												<Menu.Item>
 													{({ active }) => (
@@ -235,7 +235,7 @@ const NavBar = () => {
 								{/* <div>{text}</div> */}
 								<div className="flex relative">
 									<div
-										className="containder flex-col align-top absolute"
+										className="containder flex-col align-top absolute z-10"
 										ref={node}
 										onClick={() => setShowText(user)}
 									>
@@ -270,7 +270,7 @@ const NavBar = () => {
 										)}
 									</div>
 
-									<span className="align-middle absolute left-60">
+									<span className="align-middle absolute left-60 z-20">
 										<div className="flex container">
 											<Link
 												target="_blank"
@@ -327,11 +327,11 @@ const NavBar = () => {
 															"block px-4 py-2 text-sm text-purple-700"
 														)}
 													>
-														Your Profile
+														My Profile
 													</Link>
 												)}
 											</Menu.Item>
-											<Menu.Item>
+											{/* <Menu.Item>
 												{({ active }) => (
 													<a
 														href="#"
@@ -343,7 +343,7 @@ const NavBar = () => {
 														Settings
 													</a>
 												)}
-											</Menu.Item>
+											</Menu.Item> */}
 											<Menu.Item>
 												{({ active }) => (
 													<Link
