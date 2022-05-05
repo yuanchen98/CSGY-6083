@@ -13,6 +13,10 @@ class AnswerService{
         return axios.get(ANSWER_BASE_URL+`listMyAnswer/`);
     }
 
+    // giveLike(answer){
+    //     return axios.post(ANSWER_BASE_URL+`like/`,{answer});
+    // }
+
 
 }
 

@@ -27,6 +27,7 @@ function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
 }
 const NavBar = () => {
+	const navigate = useNavigate();
 	const [res, setRes] = useState([]);
 	const [text, setText] = useState("");
 	const [suggest, setSuggest] = useState([]);
@@ -66,10 +67,17 @@ const NavBar = () => {
 	useEffect(() => {
 		const loadResp = async () => {
 			// console.log(text);
-			const response = await QuestionService.ListRelatedQuestions(text);
-			// console.log(response);
-			setRes(response.data.data);
-			// console.log(res);
+			try {
+				const response = await QuestionService.ListRelatedQuestions(text);
+				// console.log(response);
+				setRes(response.data.data);
+				// console.log(res);}
+			} catch (error) {
+                if(error.response.data.code){
+                    navigate('/');
+                };
+				console.log(error);
+			}
 		};
 		loadResp();
 	}, [text]);
@@ -109,9 +117,13 @@ const NavBar = () => {
 
 	useEffect(() => {
 		const getsubcategory = async () => {
-			const getst = await CategoryService.listSubCategory(maincategoryid);
-			console.log(getst.data.data);
-			setSubCategory(await getst.data.data);
+			try {
+				const getst = await CategoryService.listSubCategory(maincategoryid);
+				console.log(getst.data.data);
+				setSubCategory(await getst.data.data);
+			} catch (error) {
+				console.log(error);
+			}
 		};
 		getsubcategory();
 	}, [maincategoryid]);
@@ -159,7 +171,7 @@ const NavBar = () => {
 								</div>
 								<div className="hidden sm:block sm:ml-6">
 									<div className="flex space-x-4">
-                                    {navigation.map((item) => (
+										{navigation.map((item) => (
 											<Link
 												key={item.name}
 												to={item.href}
@@ -199,11 +211,15 @@ const NavBar = () => {
 												<Menu.Item>
 													{({ active }) => (
 														<Link
-                                                            key={item.categoryId}
+															key={item.categoryId}
 															target="_blank"
-												            to={{ pathname: `/listCategoryQuestion/${item.categoryId}` }}
+															to={{
+																pathname: `/listCategoryQuestion/${item.categoryId}`,
+															}}
 															className={classNames(
-																active ? "bg-purple-100 hover:ring-2 hover:ring-pink-300 rounded-md ring-inset " : "",
+																active
+																	? "bg-purple-100 hover:ring-2 hover:ring-pink-300 rounded-md ring-inset "
+																	: "",
 																"block px-4 py-2 text-sm text-purple-700 "
 															)}
 														>

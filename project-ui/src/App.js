@@ -4,11 +4,14 @@ import { LockClosedIcon } from "@heroicons/react/solid";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import Cookies from 'js-cookie'
-
+import Cookies from "js-cookie";
+import setupInterceptor from "./setupInterceptor";
+import { createBrowserHistory } from 'history';
 
 function App() {
-	const navigate = useNavigate();
+    // const history = createBrowserHistory();
+    // setupInterceptor(history);
+    const navigate = useNavigate();
 
 	const onSubmit = (e) => {
 		e.preventDefault();
@@ -30,8 +33,7 @@ function App() {
 			.then((data) => {
 				console.log(data);
 				if (data.code === 200) {
-                    
-					navigate('/home');
+					navigate("/home");
 				}
 			})
 			.catch((err) => err);
@@ -39,6 +41,7 @@ function App() {
 
 	return (
 		<>
+        {/* {<NavigateFunctionComponent />} */}
 			{/*
         This example requires updating your template:
 
@@ -56,7 +59,7 @@ function App() {
 						</h2>
 						<p className="mt-2 text-center text-sm text-gray-700">
 							<Link
-								to={{pathname: `/Regist`}}
+								to={{ pathname: `/Regist` }}
 								className="font-medium text-purple-700 hover:text-purple-500"
 							>
 								Don't have an account? Sign up
