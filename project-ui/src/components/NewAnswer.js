@@ -101,7 +101,7 @@ const NewAnswer = (props) => {
 													name="detail"
 													rows={5}
 													className="shadow-sm focus:ring-pink-300 focus:border-pink-300 mt-2 block w-full sm:text-sm border border-gray-300 rounded-md"
-													placeholder="Please provide detail description of your question"
+													placeholder="Please provide detail description of your answer"
 													defaultValue={""}
 												/>
 											</div>

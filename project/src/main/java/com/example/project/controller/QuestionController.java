@@ -3,6 +3,7 @@ package com.example.project.controller;
 import com.example.project.entity.Answers;
 import com.example.project.entity.Questions;
 import com.example.project.entity.User;
+import com.example.project.entity.exception.SystemGlobalException;
 import com.example.project.entity.response.ResponseEntity;
 import com.example.project.model.QuestionDisplayFactory;
 import com.example.project.model.QuestionPostFactory;
@@ -71,6 +72,9 @@ public class QuestionController {
     @ResponseBody
     public ResponseEntity<Questions> regist(@RequestBody @Valid QuestionPostFactory.QuestionPost questionPost, BindingResult bindingResult){
         Questions questions = questionPostFactory.rpoToPojo.apply(questionPost);
+        if(questions.getTitle().length()==0){
+            throw new SystemGlobalException("Question Title can't be null");
+        }
         Long userId = (Long) httpSession.getAttribute(USER_ID);
         questions.setUser(userService.findById(userId));
         questionService.saveNewQuestion(questions);

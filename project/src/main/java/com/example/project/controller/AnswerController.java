@@ -4,6 +4,7 @@ import com.example.project.entity.Answers;
 import com.example.project.entity.Questions;
 import com.example.project.entity.Thumbs;
 import com.example.project.entity.User;
+import com.example.project.entity.exception.SystemGlobalException;
 import com.example.project.entity.response.ResponseEntity;
 import com.example.project.model.AnswerDisplayFactory;
 import com.example.project.model.AnswerPostFactory;
@@ -59,6 +60,9 @@ public class AnswerController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), bindingResult.getFieldError().getDefaultMessage());
         }
         Answers answers = answerPostFactory.rpoToPojo.apply(answerPost);
+        if(answers.getAnswerBody().length()==0){
+            throw new SystemGlobalException("Answer can't be empty");
+        }
         Long userId = (Long) httpSession.getAttribute(USER_ID);
         answers.setUser(userService.findById(userId));
         answers = answerService.saveNewAnswer(answers);
