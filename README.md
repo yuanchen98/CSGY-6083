@@ -157,11 +157,11 @@ answerId references Answer(answerId)
 
    
 
-![image-20220505212910483](/Users/yuan/Desktop/6083/Project/fig/image-20220505212910483.png)
+![image-20220505212910483](./fig/image-20220505212910483.png)
 
 <center>Fig 1: The Login Page before user can access any other resource</center>
 
-![image-20220505212945774](/Users/yuan/Desktop/6083/Project/fig/image-20220505212945774.png)
+![image-20220505212945774](./fig/image-20220505212945774.png)
 
 <center>Fig 2: Both the username and password can't be empty</center>
 
@@ -173,13 +173,13 @@ answerId references Answer(answerId)
 
 3. Also, New user should select their location during the registration process by using the dropdown.
 
-![Screen Shot 2022-05-05 at 9.41.40 PM](/Users/yuan/Desktop/6083/Project/fig/Screen Shot 2022-05-05 at 9.41.40 PM.png)
+![Screen Shot 2022-05-05 at 9.41.40 PM](./fig/Screen Shot 2022-05-05 at 9.41.40 PM.png)
     
 <center>Fig 3: Go to registration page</center>
 
 
 
-![image-20220505214929219](/Users/yuan/Desktop/6083/Project/fig/image-20220505214929219.png)
+![image-20220505214929219](./fig/image-20220505214929219.png)
 
 <center>Fig 4: The registration page</center>
 
@@ -206,18 +206,18 @@ answerId references Answer(answerId)
    
    
 
-![image-20220505234144492](/Users/yuan/Desktop/6083/Project/fig/image-20220505234144492.png)
+![image-20220505234144492](./fig/image-20220505234144492.png)
 
 <center>Fig 5: The category dropdown</center>
 
    
 
-![image-20220505223929996](/Users/yuan/Desktop/6083/Project/fig/image-20220505223929996.png)
+![image-20220505223929996](./fig/image-20220505223929996.png)
 <center>Fig 6: The search bar</center>
 
 
 
-  ![image-20220505224007881](/Users/yuan/Desktop/6083/Project/fig/image-20220505224007881.png)
+  ![image-20220505224007881](./fig/image-20220505224007881.png)
 
 <center>Fig 7: The information icon</center>
 
@@ -229,7 +229,7 @@ answerId references Answer(answerId)
 2. User can decide whether to type the description of the quesiton, so the description is not necessary for posting a new question.
 
 
-![image-20220505225558871](/Users/yuan/Desktop/6083/Project/fig/image-20220505225558871.png)
+![image-20220505225558871](./fig/image-20220505225558871.png)
 
 <center>Fig 8: The post new question component</center>
 
@@ -248,7 +248,7 @@ answerId references Answer(answerId)
 
 
 
-![image-20220505230401707](/Users/yuan/Desktop/6083/Project/fig/image-20220505230401707.png)
+![image-20220505230401707](./fig/image-20220505230401707.png)
     
 <center>Fig 9: The questions listed reverse chronologically on the dashboard</center>
 
@@ -258,7 +258,7 @@ answerId references Answer(answerId)
 
 The my questions page will show all the questions that the user posted in reverse chronological order. Clicking on the title of the question will redirect to the page that shows this question and all the answers replied to this question. Clicking on the category tag or subcategory tag will redirect to the page showing the questions belong to this category or subcategory.
 
-![image-20220505233422236](/Users/yuan/Desktop/6083/Project/fig/image-20220505233422236.png)
+![image-20220505233422236](./fig/image-20220505233422236.png)
 
 <center>Fig 10: The my questions page</center>
 
@@ -269,13 +269,13 @@ The my questions page will show all the questions that the user posted in revers
 1. If the user is redirected to the page show the question and all the answers replied to this question, user can post an answer to this question. The answer body can't be empty. If the answer to this question, the page will alert post success and refresh the page.
 2. User can also give a like to an answer. Users cannot cancel their likes and each user can give only one like to each answer. The number on the right of the thumb icon shows the number of likes that answer receive.
 
-![image-20220505233714396](/Users/yuan/Desktop/6083/Project/fig/image-20220505233714396.png)
+![image-20220505233714396](./fig/image-20220505233714396.png)
 
 <center>Fig 11: The question and answers replied to it</center>
 
 
 
-![image-20220505233827490](/Users/yuan/Desktop/6083/Project/fig/image-20220505233827490.png)
+![image-20220505233827490](./fig/image-20220505233827490.png)
 
 <center>Fig 12: The post new answer component</center>
 
