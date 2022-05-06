@@ -39,7 +39,7 @@ https://github.com/yuanchen98/CSGY6083-Project
 - A user can give many thumbs, so thumbs to user is many to one relationship.  And an answer can receive many thumbs, so thumbs to answers is also many to one relationship.
 - A question only have one best answer,  and a best answer only belongs to one question, so it's a one to one relation.
 
-![image-20220505204220552](/Users/yuan/Desktop/6083/Project/E-R-New.png)
+![image-20220505204220552](./fig/E-R-New.png)
 
 ### Relation Schemas
 
@@ -266,7 +266,7 @@ The my questions page will show all the questions that the user posted in revers
 
 ##### Question and Answers
 
-1. If the user is redirected to the page show the question and all the answers replied to this question, user can post an answer to this question. The answer body can't be empty. If the answer to this question, the page will alert post success and refresh the page.
+1. If the user is redirected to the page shows the question and all the answers replied to this question, user can post an answer to this question. The answer body can't be empty. If the answer to this question, the page will alert post success and refresh the page.
 2. User can also give a like to an answer. Users cannot cancel their likes and each user can give only one like to each answer. The number on the right of the thumb icon shows the number of likes that answer receive.
 
 ![image-20220505233714396](./fig/image-20220505233714396.png)
@@ -329,5 +329,7 @@ The my answers page will show all the answers that the user posted in reverse ch
 - **Front-end:** 
 
   - React.js
+  
   - Tailwind CSS
+  
   - Axios
