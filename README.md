@@ -4,7 +4,7 @@ Yuan Chen
 
 yc5118@nyu.edu
 
-https://github.com/yuanchen98/CSGY6083-Project
+https://github.com/yuanchen98/NYUCHAT
 
 ## Schema Design
 
